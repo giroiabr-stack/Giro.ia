@@ -1,0 +1,1878 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIRO | Holding de Autosserviço &amp; Automação</title>
+<meta name="description" content="A GIRO estuda, importa e conecta você ao modelo de negócio e aos fornecedores certos de autosserviço e automação, com dado de mercado e diagnóstico antes da compra.">
+<meta property="og:title" content="GIRO | Holding de Autosserviço & Automação">
+<meta property="og:description" content="O negócio certo. O giro certo. A hora certa. Diagnóstico, curadoria de fornecedores e automação sob medida.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GIRO | Holding de Autosserviço & Automação">
+<meta name="twitter:description" content="O negócio certo. O giro certo. A hora certa. Diagnóstico, curadoria de fornecedores e automação sob medida.">
+<!-- [PREENCHER] og:image e twitter:image: adicionar quando houver uma URL pública de imagem/logo hospedada (necessário para gerar preview visual ao compartilhar o link) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='100' fill='%230A1B2E'/%3E%3Cpath d='M 121.21 41.74 A 62 62 0 1 1 42.51 76.77' fill='none' stroke='%235EEAD4' stroke-width='14' stroke-linecap='round'/%3E%3Ccircle cx='74.78' cy='43.36' r='13' fill='%23E8834A'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --navy-deep:#0A1B2E;
+    --navy-mid:#12283F;
+    --navy-panel:#0E2236;
+    --navy-panel2:#0C1E30;
+    --paper:#EDE7D9;
+    --cyan:#5EEAD4;
+    --cyan-dim:rgba(94,234,212,.55);
+    --copper:#E8834A;
+    --ink:#E9EEF3;
+    --ink-dim:#93A5B8;
+    --line:rgba(94,234,212,.16);
+    --line-strong:rgba(94,234,212,.35);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  ::selection{background:var(--cyan); color:var(--navy-deep);}
+  body{
+    background:var(--navy-deep);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:44px 44px;
+    overflow-x:hidden;
+    cursor:default;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  h1,h2,h3,.display{font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-.01em;}
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%;}
+  button{font-family:inherit;}
+
+  .sheet{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* cursor glow (hero only) */
+  #glow{position:fixed; top:0; left:0; width:520px; height:520px; border-radius:50%;
+    background:radial-gradient(circle, rgba(94,234,212,.10), transparent 68%);
+    pointer-events:none; transform:translate(-50%,-50%); z-index:1; opacity:0; transition:opacity .4s;}
+
+  /* progress bar */
+  #progress{position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(--cyan),var(--copper)); width:0%; z-index:80; box-shadow:0 0 8px var(--cyan-dim);}
+
+  header.topbar{
+    position:fixed; top:0; left:0; right:0; z-index:70;
+    background:rgba(10,27,46,.86); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{max-width:1180px; margin:0 auto; padding:14px 32px; display:flex; align-items:center; justify-content:space-between;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; letter-spacing:.02em;}
+  .logo svg{width:26px; height:26px;}
+  nav{display:flex; gap:26px; font-size:13px; color:var(--ink-dim);}
+  nav a{text-decoration:none; transition:color .2s; position:relative; padding:4px 0;}
+  nav a::after{content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px; background:var(--cyan); transition:width .25s;}
+  nav a:hover{color:var(--cyan);}
+  nav a.active{color:var(--cyan);}
+  nav a.active::after{width:100%;}
+  @media(max-width:900px){ nav{display:none;} .cta-desktop{display:none;} }
+  .nav-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; width:36px; height:36px; align-items:center; justify-content:center;}
+  .nav-toggle span{display:block; width:20px; height:2px; background:var(--cyan); transition:transform .25s, opacity .2s;}
+  @media(max-width:900px){ .nav-toggle{display:flex;} }
+  .nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2){ opacity:0; }
+  .nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  .nav-mobile{display:none; flex-direction:column; gap:2px; position:fixed; top:65px; left:0; right:0; bottom:0; max-height:calc(100vh - 65px); overflow-y:auto; opacity:0; visibility:hidden; transition:opacity .25s ease; background:rgb(10,27,46); border-top:1px solid var(--line); z-index:65;}
+  .nav-mobile.open{opacity:1; visibility:visible;}
+  @media(max-width:900px){ .nav-mobile{display:flex;} }
+  .nav-mobile a{padding:16px 32px; font-size:14.5px; color:var(--ink-dim); text-decoration:none; border-bottom:1px solid var(--line);}
+  .nav-mobile a.active{color:var(--cyan);}
+  .nav-mobile a.btn{margin:16px 32px; border-bottom:none;}
+  .nav-mobile a.btn-primary{color:var(--navy-deep);}
+
+  section{padding:110px 0 40px; position:relative;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--cyan); display:flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--cyan);}
+
+  h2.section-title{font-size:clamp(26px,3.4vw,38px); line-height:1.15; margin-bottom:16px;}
+  p.lead{color:var(--ink-dim); font-size:16.5px; max-width:660px;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding-top:150px; position:relative; overflow:visible;}
+  .hero-head{max-width:760px; position:relative; z-index:2;}
+  
+  .hero h1{font-size:clamp(42px,6.6vw,72px); line-height:1.02; margin:14px 0 22px;}
+  .hero h1 span{color:var(--cyan);}
+  .hero h1 .u2{color:var(--copper);}
+  .hero-sub{font-size:17.5px; color:var(--ink-dim); max-width:520px; margin-bottom:30px;}
+  .badge-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px;}
+  .badge{font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.05em; border:1px solid var(--line-strong); padding:7px 12px; border-radius:20px; color:var(--ink-dim); background:rgba(94,234,212,.03);}
+  .cta-row{display:flex; gap:16px; align-items:center; flex-wrap:wrap;}
+  .btn{font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:.04em; text-decoration:none; padding:15px 28px; border-radius:2px; display:inline-block; transition:transform .18s ease, background .2s, box-shadow .2s; cursor:pointer; border:none;}
+  .btn-primary{background:var(--cyan); color:var(--navy-deep); font-weight:600; box-shadow:0 4px 18px -6px rgba(94,234,212,.35);}
+  .btn-primary:hover{background:#8ff3e4; box-shadow:0 8px 28px -6px rgba(94,234,212,.6); transform:translateY(-1px);}
+  .btn-primary:active{transform:translateY(0px) scale(.98); box-shadow:0 2px 10px -4px rgba(94,234,212,.4);}
+  .wa-btn{display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:50%; background:#fff; box-shadow:0 4px 18px -6px rgba(0,0,0,.45); transition:transform .2s, box-shadow .2s;}
+  .wa-btn:hover{transform:translateY(-1px) scale(1.05); box-shadow:0 8px 24px -6px rgba(0,0,0,.55);}
+  .wa-btn svg{width:22px; height:22px; fill:#25D366;}
+  .nav-mobile .wa-mobile{display:flex; align-items:center; justify-content:center; gap:10px; background:#fff; color:var(--navy-deep); border-radius:999px; padding:12px 18px; font-weight:600;}
+  .nav-mobile .wa-mobile svg{width:20px; height:20px; fill:#25D366;}
+  .btn-ghost{border:1px solid var(--line-strong); color:var(--ink); background:transparent;}
+  .btn-ghost:hover{border-color:var(--cyan); color:var(--cyan); box-shadow:0 4px 18px -8px rgba(94,234,212,.3);}
+  .btn-ghost:active{transform:scale(.98);}
+
+  /* --- rotating machine illustration --- */
+  .machine-stage{height:360px; position:relative; margin-top:30px;}
+  @media(max-width:900px){ .machine-stage{height:320px; margin-top:30px;} }
+  #heroCanvas{position:absolute; inset:0; width:100%; height:100%; touch-action:pan-y; cursor:grab; opacity:0; transition:opacity .6s ease;}
+  #heroCanvas.grabbing{cursor:grabbing;}
+  #heroCanvas.ready{opacity:1;}
+  .stage-tip{position:absolute; left:0; right:0; bottom:2px; display:flex; flex-direction:column; align-items:center; gap:5px; pointer-events:none;}
+  .stage-tip .tip-tag{font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:.14em; color:var(--copper);}
+  .stage-tip .tip-name{font-family:'Space Grotesk', sans-serif; font-size:15px; font-weight:600; color:var(--ink); letter-spacing:.01em;}
+  .machine{position:relative; width:190px; height:330px; transform-style:preserve-3d; animation:spinY 13s linear infinite;}
+  .machine:hover{animation-play-state:paused;}
+  @keyframes spinY{ from{transform:rotateY(0deg);} to{transform:rotateY(360deg);} }
+  .mface{position:absolute; backface-visibility:hidden; border:1px solid rgba(94,234,212,.3);}
+  .mfront, .mback{width:190px; height:330px; left:0; top:0;}
+  .mfront{transform:translateZ(46px); background:linear-gradient(165deg,#123350,#0c2136 60%); border-radius:6px; overflow:hidden;}
+  .mback{transform:rotateY(180deg) translateZ(46px); background:linear-gradient(165deg,#0d2438,#091a29); border-radius:6px;}
+  .mright, .mleft{width:92px; height:330px; top:0;}
+  .mright{transform:rotateY(90deg) translateZ(95px); left:49px; background:linear-gradient(180deg,#0a1c2d,#081521);}
+  .mleft{transform:rotateY(-90deg) translateZ(95px); left:-49px; background:linear-gradient(180deg,#0a1c2d,#081521);}
+  .mtop{width:190px; height:92px; left:0; top:-46px; transform:rotateX(90deg) translateZ(46px); background:linear-gradient(180deg,#1a3d5e,#123350); border-radius:6px 6px 0 0;}
+  .mscreen{position:absolute; top:26px; left:20px; right:20px; height:96px; border:1px solid var(--cyan-dim); border-radius:4px; background:rgba(94,234,212,.06); display:flex; align-items:center; justify-content:center;}
+  .mscreen .mring{width:46px; height:46px;}
+  .mslots{position:absolute; top:140px; left:20px; right:20px; display:grid; grid-template-columns:repeat(3,1fr); gap:8px;}
+  .mslot{height:34px; border:1px solid rgba(94,234,212,.22); border-radius:3px; background:rgba(233,238,243,.03);}
+  .mstrip{position:absolute; bottom:26px; left:20px; right:20px; height:10px; border-radius:2px; background:linear-gradient(90deg,var(--copper),#f0a06e);}
+  .mlabel{position:absolute; bottom:44px; left:20px; right:20px; font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:.12em; color:var(--ink-dim); text-align:center;}
+  .machine-shadow{position:absolute; bottom:-6px; width:210px; height:26px; border-radius:50%; background:radial-gradient(ellipse, rgba(0,0,0,.45), transparent 72%); left:50%; transform:translateX(-50%); filter:blur(2px);}
+  .stage-caption{text-align:center; margin-top:6px; font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.1em; color:var(--ink-dim); text-transform:uppercase;}
+
+  .stat-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line-strong); border:1px solid var(--line-strong); margin-top:44px;}
+  @media(max-width:760px){ .stat-grid{grid-template-columns:1fr;} }
+  .stat-cell{background:var(--navy-deep); padding:28px 26px; transition:background .3s, box-shadow .3s; position:relative; z-index:1;}
+  .stat-cell:hover{background:var(--navy-panel); box-shadow:0 14px 30px -16px rgba(0,0,0,.5);}
+  .stat-source{font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-dim); opacity:.65; margin-top:10px; letter-spacing:.02em;}
+  .stat-cell .k{font-family:'IBM Plex Mono', monospace; font-size:24px; color:var(--cyan); letter-spacing:0; margin-bottom:8px;}
+  .stat-cell .l{font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-dim); letter-spacing:.06em; text-transform:uppercase; margin-bottom:10px;}
+  .stat-cell p{color:var(--ink-dim); font-size:13.5px;}
+
+  /* ---------- ICONS (line-art) ---------- */
+  .licon{width:44px; height:44px; margin-bottom:16px;}
+  .licon path, .licon circle, .licon rect, .licon line{fill:none; stroke:var(--cyan); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;}
+  .licon .fillc{fill:var(--copper); stroke:none;}
+  .licon.draw path, .licon.draw circle{stroke-dasharray:220; stroke-dashoffset:220; transition:stroke-dashoffset 1.1s ease;}
+  .reveal.show .licon.draw path, .reveal.show .licon.draw circle{stroke-dashoffset:0;}
+
+  /* trust cards (quem somos) */
+  .trust-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line-strong); border:1px solid var(--line-strong); margin-top:44px;}
+  @media(max-width:700px){ .trust-grid{grid-template-columns:1fr;} }
+  .trust-cell{background:var(--navy-deep); padding:30px 28px; transition:background .3s, transform .3s, box-shadow .3s; position:relative; z-index:1;}
+  .trust-cell:hover{background:var(--navy-panel); transform:translateY(-3px); box-shadow:0 14px 30px -14px rgba(0,0,0,.5);}
+  .trust-cell .tnum{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--cyan); letter-spacing:.08em; margin-bottom:12px;}
+  .trust-cell h3{font-size:18px; margin-bottom:10px;}
+  .trust-cell p{color:var(--ink-dim); font-size:14.5px;}
+
+  /* tabs */
+  .tabs{display:flex; gap:2px; margin-top:40px; border:1px solid var(--line-strong); flex-wrap:wrap;}
+  .tab-btn{flex:1; min-width:180px; background:transparent; border:none; color:var(--ink-dim); font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.03em; padding:16px 18px; cursor:pointer; border-right:1px solid var(--line-strong); text-align:left; transition:all .2s;}
+  .tab-btn:last-child{border-right:none;}
+  .tab-btn .tnum{color:var(--cyan); margin-right:8px;}
+  .tab-btn.active{background:var(--navy-panel); color:var(--ink);}
+  .tab-panels{border:1px solid var(--line-strong); border-top:none; padding:38px;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block; animation:fadein .35s ease;}
+  @keyframes fadein{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+  .tab-panel h3{font-size:22px; margin-bottom:10px;}
+  .tab-panel .desc{color:var(--ink-dim); margin-bottom:26px; max-width:640px;}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:30px;}
+  @media(max-width:700px){ .two-col{grid-template-columns:1fr;} }
+  .col-label{font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.08em; margin-bottom:12px;}
+  .col-label.yes{color:var(--cyan);}
+  .col-label.no{color:var(--copper);}
+  ul.check{list-style:none;}
+  ul.check li{font-size:14.5px; color:var(--ink-dim); padding:7px 0 7px 20px; position:relative;}
+  ul.check.yes li::before{content:''; position:absolute; left:0; top:15px; width:8px; height:1px; background:var(--cyan);}
+  ul.check.no li::before{content:''; position:absolute; left:0; top:15px; width:8px; height:1px; background:var(--copper);}
+
+  /* ---------- machine gallery ---------- */
+  .mgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-strong); border:1px solid var(--line-strong); margin-top:44px;}
+  @media(max-width:860px){ .mgrid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:560px){ .mgrid{grid-template-columns:1fr;} }
+  .mcard{background:var(--navy-deep); position:relative; min-height:132px; perspective:900px; cursor:pointer; outline:none; z-index:1;}
+  .mcard-inner{position:relative; width:100%; height:100%; min-height:132px; transition:transform .55s cubic-bezier(.2,.8,.2,1); transform-style:preserve-3d;}
+  .mcard.open .mcard-inner{transform:rotateY(180deg);}
+  .mcard-face{position:absolute; inset:0; backface-visibility:hidden; padding:22px 22px; display:flex; flex-direction:column; background:var(--navy-deep);}
+  .mcard-face.back{transform:rotateY(180deg); background:var(--navy-panel); justify-content:center;}
+  .mcard:hover .mcard-face.front{background:var(--navy-panel);}
+  .mc-back-title{font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--cyan); margin-bottom:12px;}
+  .mc-more{margin-top:auto; font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--cyan);}
+  .mcard:focus-visible{box-shadow:inset 0 0 0 1px var(--cyan);}
+  .mcard h3{font-size:16px; margin-bottom:8px; line-height:1.3;}
+  .mcard p{font-size:13.5px; color:var(--ink-dim); line-height:1.55;}
+  
+  .portfolio-note{margin-top:26px; padding:26px 28px;
+    border:1px solid var(--line-strong); background:linear-gradient(180deg, rgba(94,234,212,.05), rgba(94,234,212,.015));}
+  .portfolio-note{font-size:14.5px; color:var(--ink-dim); line-height:1.6;}
+  .portfolio-note strong{color:var(--ink); font-family:'Space Grotesk', sans-serif; font-weight:600; display:block; margin-bottom:6px; font-size:15.5px;}
+  .stage-note{margin-top:10px; text-align:center; font-size:12px; color:var(--ink-dim); line-height:1.55; max-width:430px; margin-left:auto; margin-right:auto;}
+  .stage-note b{color:var(--cyan); font-weight:500;}
+
+  /* ---------- automação steps ---------- */
+  .steps{margin-top:46px; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-strong); border:1px solid var(--line-strong);}
+  @media(max-width:620px){ .steps{grid-template-columns:1fr;} }
+  .step{background:var(--navy-deep); padding:22px 18px; min-height:170px; display:flex; flex-direction:column; justify-content:space-between;}
+  .step .sn{font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:11px;}
+  .step h3{font-size:14px; margin:14px 0 6px; line-height:1.3;}
+  .step p{font-size:12.5px; color:var(--ink-dim);}
+
+  /* accordion */
+  .accordion{margin-top:40px; border-top:1px solid var(--line-strong);}
+  .acc-item{border-bottom:1px solid var(--line-strong);}
+  .acc-head{display:flex; align-items:center; justify-content:space-between; padding:22px 4px; cursor:pointer; background:none; border:none; width:100%; color:var(--ink); text-align:left;}
+  .acc-head .left{display:flex; align-items:center; gap:18px;}
+  .acc-head .idx{font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:12px; width:26px;}
+  .acc-head h3{font-size:17.5px; font-weight:500;}
+  .acc-head .plus{font-family:'IBM Plex Mono', monospace; color:var(--cyan); font-size:18px; transition:transform .25s;}
+  .acc-item.open .plus{transform:rotate(45deg);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .35s ease;}
+  .acc-body-inner{padding:0 4px 26px 44px; color:var(--ink-dim); font-size:14.5px; max-width:640px;}
+  .acc-body-inner .tags{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;}
+  .tag{font-family:'IBM Plex Mono', monospace; font-size:10.5px; border:1px solid var(--line-strong); padding:4px 10px; border-radius:20px; color:var(--ink-dim);}
+
+  /* ---------- interactive process path ---------- */
+  .flow-wrap{margin-top:56px; position:relative;}
+  .flow-svg{width:100%; height:64px; display:block; margin-bottom:-2px;}
+  .flow-path{fill:none; stroke:var(--line-strong); stroke-width:2;}
+  .flow-path-fill{fill:none; stroke:var(--cyan); stroke-width:2; stroke-dasharray:900; stroke-dashoffset:900; transition:stroke-dashoffset .6s ease;}
+  .flow-pulse{fill:var(--cyan); filter:drop-shadow(0 0 6px var(--cyan));}
+  .flow-nodes{display:grid; grid-template-columns:repeat(7,1fr); gap:1px; background:var(--line-strong); border:1px solid var(--line-strong);}
+  @media(max-width:900px){ .flow-nodes{grid-template-columns:repeat(4,1fr);} }
+  @media(max-width:560px){ .flow-nodes{grid-template-columns:1fr;} }
+  .fnode{background:var(--navy-deep); padding:20px 16px; cursor:pointer; transition:background .25s; border:2px solid transparent;}
+  .fnode:hover{background:var(--navy-panel);}
+  .fnode.active{background:var(--navy-panel); border-color:var(--cyan);}
+  .fnode .fn-num{width:28px; height:28px; border-radius:50%; border:1px solid var(--line-strong); display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-dim); margin-bottom:12px; transition:all .2s;}
+  .fnode.active .fn-num{border-color:var(--cyan); color:var(--cyan); background:rgba(94,234,212,.08);}
+  .fnode h3{font-size:13.5px; line-height:1.3;}
+  .flow-detail{border:1px solid var(--line-strong); border-top:none; padding:32px 36px; background:var(--navy-panel); display:none;}
+  .flow-detail.active{display:block; animation:fadein .3s ease;}
+  .flow-detail p{color:var(--ink-dim); font-size:14.5px; max-width:640px;}
+  .flow-detail .fd-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--copper); letter-spacing:.08em; margin-bottom:10px;}
+
+  table.compare{width:100%; border-collapse:collapse; margin-top:40px; font-size:14px;}
+  .table-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch; position:relative;}
+  @media(max-width:620px){
+    table.compare{min-width:520px; margin-top:24px;}
+    .table-wrap::after{content:'‹ deslize ›'; display:block; text-align:center; font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--cyan); opacity:.6; padding:8px 0 2px; letter-spacing:.05em;}
+  }
+  table.compare th, table.compare td{padding:16px 18px; border:1px solid var(--line-strong); text-align:left; vertical-align:top;}
+  table.compare th{font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.05em; color:var(--ink-dim); font-weight:500;}
+  table.compare th.hl, table.compare td.hl{background:rgba(94,234,212,.06); color:var(--ink);}
+  table.compare td{color:var(--ink-dim);}
+  table.compare td.hl strong{color:var(--cyan);}
+  table.compare tbody tr{transition:background .2s;}
+  table.compare tbody tr:hover{background:rgba(94,234,212,.04);}
+  header.topbar{transition:box-shadow .3s, background .3s;}
+  header.topbar.scrolled{box-shadow:0 8px 24px -12px rgba(0,0,0,.6);}
+
+  .ladder{margin-top:44px; display:grid; grid-template-columns:1fr auto 1fr; gap:0; align-items:stretch;}
+  @media(max-width:760px){ .ladder{grid-template-columns:1fr;} }
+  .ladder-card{border:1px solid var(--line-strong); padding:32px 28px; background:var(--navy-panel);}
+  .ladder-card.reduced{border-color:var(--cyan); background:rgba(94,234,212,.05);}
+  .ladder-card .lk{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--cyan); letter-spacing:.08em; margin-bottom:10px;}
+  .ladder-card h3{font-size:19px; margin-bottom:12px;}
+  .ladder-card p{color:var(--ink-dim); font-size:14px;}
+  .ladder-arrow{display:flex; align-items:center; justify-content:center; padding:0 22px; color:var(--cyan); font-family:'IBM Plex Mono', monospace; font-size:20px;}
+  @media(max-width:760px){ .ladder-arrow{padding:14px 0; transform:rotate(90deg);} }
+
+  .road{position:relative; margin-top:60px; padding-top:6px;}
+  .road-line{position:relative; height:2px; background:var(--line-strong); margin:0 6px;}
+  .road-points{display:grid; grid-template-columns:repeat(3,1fr); margin-top:-1px;}
+  .rp{position:relative; padding-top:26px;}
+  .rp::before{content:''; position:absolute; top:-5px; left:0; width:11px; height:11px; border-radius:50%; background:var(--navy-deep); border:2px solid var(--cyan);}
+  .rp .phase{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--cyan); letter-spacing:.06em; margin-bottom:8px;}
+  .rp h4{font-size:16.5px; margin-bottom:8px;}
+  .rp p{font-size:13.5px; color:var(--ink-dim); max-width:280px;}
+  @media(max-width:760px){ .road-points{grid-template-columns:1fr; gap:36px;} }
+
+  .chart-wrap{margin-top:40px; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center;}
+  @media(max-width:840px){ .chart-wrap{grid-template-columns:1fr;} }
+  .legend{display:flex; flex-direction:column; gap:14px;}
+  .leg-item{display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--ink-dim);}
+  .leg-swatch{width:12px; height:12px; border-radius:2px;}
+
+  .closing{margin-top:40px; padding:60px 40px; text-align:center; border:1px solid var(--line-strong); position:relative; background:radial-gradient(circle at 50% 0%, rgba(94,234,212,.08), transparent 60%);}
+  .closing h2{font-size:clamp(28px,4vw,42px); margin-bottom:16px;}
+  .closing p{color:var(--ink-dim); max-width:500px; margin:0 auto 30px;}
+
+  footer{padding:50px 0 70px; border-top:1px solid var(--line); margin-top:40px;}
+  .foot-grid{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px;}
+  .foot-note{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-dim); letter-spacing:.04em; margin-top:6px;}
+  .foot-right{text-align:right;}
+  .foot-links{display:flex; gap:18px; justify-content:flex-end; margin-bottom:10px;}
+  .foot-link{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-dim); text-decoration:none; letter-spacing:.03em; transition:color .2s;}
+  .foot-link:hover{color:var(--cyan);}
+  .foot-legal{font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-dim); opacity:.6; letter-spacing:.02em;}
+  @media(max-width:600px){ .foot-right{text-align:left;} .foot-links{justify-content:flex-start;} }
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.show{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+    .reveal{opacity:1; transform:none;}
+  }
+
+  .disclaimer{margin-top:18px; font-size:12.5px; color:var(--ink-dim); border-left:2px solid var(--copper); padding:10px 16px; background:rgba(232,131,74,.06); max-width:660px;}
+
+
+  /* ---------- calculadora de royalties ---------- */
+  .calc{display:grid; grid-template-columns:1.05fr .95fr; gap:1px; background:var(--line-strong);
+        border:1px solid var(--line-strong); margin-top:44px;}
+  @media(max-width:820px){ .calc{grid-template-columns:1fr;} }
+  .calc-in{background:var(--navy-deep); padding:32px 30px;}
+  .calc-out{background:var(--navy-panel); padding:32px 30px; display:flex; flex-direction:column;}
+  .fld{margin-bottom:22px;}
+  .fld label{display:block; font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.12em;
+             text-transform:uppercase; color:var(--ink-dim); margin-bottom:9px;}
+  .fld select, .fld input[type=number]{width:100%; background:var(--navy-panel2); color:var(--ink);
+    border:1px solid var(--line-strong); border-radius:2px; padding:11px 12px; font-family:'IBM Plex Sans', sans-serif;
+    font-size:14.5px; outline:none;}
+  .fld select:focus, .fld input:focus{border-color:var(--cyan);}
+  .fld input[type=range]{width:100%; -webkit-appearance:none; appearance:none; height:3px; border-radius:2px;
+    background:var(--line-strong); outline:none; margin:12px 0 4px;}
+  .fld input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:18px; height:18px; border-radius:50%;
+    background:var(--cyan); cursor:pointer; border:3px solid var(--navy-deep); box-shadow:0 0 0 1px var(--cyan);}
+  .fld input[type=range]::-moz-range-thumb{width:14px; height:14px; border-radius:50%; background:var(--cyan);
+    cursor:pointer; border:3px solid var(--navy-deep);}
+  .fld .val{font-family:'Space Grotesk', sans-serif; font-size:22px; font-weight:600; color:var(--cyan);}
+  .range-ticks{display:flex; justify-content:space-between; margin-top:8px; font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:.04em; color:var(--ink-dim); opacity:.7;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .adv-toggle{background:none; border:none; color:var(--ink-dim); font-family:'IBM Plex Mono', monospace; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; cursor:pointer; padding:6px 0; border-bottom:1px solid var(--line-strong);
+    width:100%; text-align:left; transition:color .2s;}
+  .adv-toggle:hover{color:var(--cyan);}
+  .adv{display:none; margin-top:20px;}
+  .adv.open{display:block;}
+  .cr-label{font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+            color:var(--ink-dim); margin-bottom:12px;}
+  .cr-big{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:clamp(34px,5vw,50px); line-height:1;
+          color:var(--cyan); letter-spacing:-.02em; margin-bottom:8px;}
+  .cr-sub{font-size:14px; color:var(--ink); margin-bottom:26px;}
+  .cr-break{list-style:none; border-top:1px solid var(--line); margin-top:auto;}
+  .cr-break li{display:flex; justify-content:space-between; gap:14px; padding:11px 0;
+               border-bottom:1px solid var(--line); font-size:13.5px; color:var(--ink-dim);}
+  .cr-break li span{color:var(--ink); font-family:'IBM Plex Mono', monospace; font-size:13px;}
+  .cr-note{margin-top:22px; font-size:13px; color:var(--ink-dim); line-height:1.6; border-left:2px solid var(--cyan);
+           padding-left:14px;}
+  .calc-foot{margin-top:18px; font-size:12px; color:var(--ink-dim);}
+
+
+  /* ---------- divisão de responsabilidade ---------- */
+  .resp{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line-strong);
+        border:1px solid var(--line-strong); margin-top:44px;}
+  @media(max-width:760px){ .resp{grid-template-columns:1fr;} }
+  .resp-col{background:var(--navy-deep); padding:30px 28px;}
+  .resp-col.cli{background:var(--navy-panel);}
+  .resp-col .rk{font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:16px;}
+  .resp-col.giro .rk{color:var(--cyan);}
+  .resp-col.cli .rk{color:var(--copper);}
+  .resp-col h3{font-size:18px; margin-bottom:16px;}
+  .resp-col ul{list-style:none;}
+  .resp-col li{font-size:14px; color:var(--ink-dim); line-height:1.5; padding:8px 0 8px 18px; position:relative;}
+  .resp-col li::before{content:''; position:absolute; left:0; top:15px; width:8px; height:1px;}
+  .resp-col.giro li::before{background:var(--cyan);}
+  .resp-col.cli li::before{background:var(--copper);}
+
+  #back-top{position:fixed; right:31px; bottom:calc(98px + env(safe-area-inset-bottom, 0px)); width:42px; height:42px; border-radius:50%; background:var(--navy-panel); border:1px solid var(--line-strong); display:flex; align-items:center; justify-content:center; color:var(--cyan); cursor:pointer; opacity:0; pointer-events:none; transition:opacity .3s, transform .2s; z-index:60;}
+  #wa-float{position:fixed; right:24px; bottom:calc(24px + env(safe-area-inset-bottom, 0px)); width:56px; height:56px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 22px -6px rgba(0,0,0,.55); z-index:61; transition:transform .2s, box-shadow .2s;}
+  #wa-float:hover{transform:translateY(-2px) scale(1.06); box-shadow:0 10px 28px -6px rgba(0,0,0,.6);}
+  #wa-float svg{width:30px; height:30px; fill:#25D366;}
+  #back-top.show{opacity:1; pointer-events:auto;}
+  #back-top:hover{transform:translateY(-3px); border-color:var(--cyan);}
+</style>
+
+<div id="glow"></div>
+<div id="progress"></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">
+      <svg viewBox="0 0 200 200"><path d="M 123.26 36.10 A 68 68 0 1 1 36.95 74.53" fill="none" stroke="#5EEAD4" stroke-width="15" stroke-linecap="round"/><circle cx="72.34" cy="37.88" r="15" fill="#E8834A"/></svg>
+      GIRO
+    </div>
+    <nav id="nav">
+      <a href="#quemsomos">Quem somos</a>
+      <a href="#modelo">Modelo</a>
+      <a href="#maquinas">Portfólio</a>
+      <a href="#processo">Processo</a>
+      <a href="#royalties">Royalties</a>
+    </nav>
+    <button id="navToggle" class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav id="navMobile" class="nav-mobile">
+  <a href="#quemsomos">Quem somos</a>
+  <a href="#modelo">Modelo</a>
+  <a href="#maquinas">Portfólio</a>
+  <a href="#processo">Processo</a>
+  <a href="#royalties">Royalties</a>
+</nav>
+
+<div class="sheet">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-head">
+      <div class="eyebrow">Holding de autosserviço &amp; automação</div>
+      <h1>O negócio <span class="u2">certo</span>.<br>O giro <span>certo</span>.<br>A hora <span class="u2">certa</span>.</h1>
+      <p class="hero-sub">Somos uma equipe que estuda, importa e conecta você ao modelo de negócio e aos fornecedores certos de autosserviço e automação, com dado de mercado, sem contrato de fidelidade e sem promessa vazia de negócio automático.</p>
+      <div class="badge-row">
+        <span class="badge">DISTRIBUIÇÃO EXCLUSIVA</span>
+        <span class="badge">CURADORIA DE MERCADO</span>
+        <span class="badge">AUTOMAÇÃO SOB MEDIDA</span>
+      </div>
+      <div class="cta-row">
+        <a href="#processo" class="btn btn-primary magnet">Ver como funciona</a>
+        <a href="#maquinas" class="btn btn-ghost magnet">Conhecer o portfólio</a>
+      </div>
+    </div>
+
+    <div class="machine-stage" id="machineStage">
+      <canvas id="heroCanvas" aria-label="Vitrine com as operações do portfólio GIRO"></canvas>
+      <div class="stage-tip" id="stageTip">
+        <span class="tip-name" id="tipName">Lavanderia self-service</span>
+      </div>
+    </div>
+
+    <div class="stat-grid reveal">
+      <div class="stat-cell"><div class="k" data-count="10" data-suffix="%">0%</div><div class="l">crescimento anual médio do setor</div><p>O setor brasileiro de autoatendimento cresce de forma constante ano após ano.</p></div>
+      <div class="stat-cell"><div class="k" data-count="70" data-suffix="%">0%</div><div class="l">dos brasileiros priorizam o autoatendimento na hora de pagar</div><p>A demanda já existe, falta oferta bem posicionada.</p></div>
+    </div>
+    <div class="stat-source">Fontes: ABAAST — Associação Brasileira de Autoatendimento, Serviços &amp; Tecnologia; ABRAS/APAS.</div>
+  </section>
+
+  <!-- CENÁRIO -->
+  <section id="cenario">
+    <div class="eyebrow">Leitura de mercado</div>
+    <h2 class="section-title reveal">Um mercado que cresce mais rápido do que a maioria consegue acompanhar.</h2>
+    <p class="lead reveal">O setor de autosserviço no Brasil ainda está longe da maturidade de mercados como Japão, Estados Unidos e países europeus, e é exatamente essa distância que representa oportunidade. A tecnologia por trás dessas máquinas muda toda semana: conectividade, inteligência artificial embarcada, gestão remota, novos formatos. Quem depende de informação parada perde a janela. Por isso existimos: para trazer o que está de mais atual antes que vire commodity, e traduzir isso em decisão certa para quem investe.</p>
+  </section>
+
+  <!-- QUEM SOMOS -->
+  <section id="quemsomos">
+    <div class="eyebrow">Quem somos</div>
+    <h2 class="section-title reveal">Uma equipe que aprendeu operando, não só pesquisando.</h2>
+    <p class="lead reveal">Somos uma equipe formada por quem já esteve dentro da operação de autosserviço no Brasil: escolhendo ponto comercial, testando máquina, ajustando operação até faturar. Antes da GIRO, prestamos suporte direto a franqueados de outras redes que não recebiam apoio nenhum da própria matriz, em cenários muito diferentes entre si. Foi ali que confirmamos algo simples: o problema nunca foi falta de máquina no mercado. Sempre foi falta de diagnóstico antes da compra.</p>
+
+    <div class="trust-grid reveal">
+      <div class="trust-cell">
+        <svg class="licon draw" viewBox="0 0 44 44"><circle cx="22" cy="22" r="14"/><path d="M22 8v4M22 32v4M8 22h4M32 22h4M12 12l3 3M29 29l3 3M32 12l-3 3M15 29l-3 3"/></svg>
+        <div class="tnum">ATUALIZAÇÃO CONSTANTE</div>
+        <h3>Presença em feiras internacionais, todo ano</h3>
+        <p>Participamos de pelo menos dois grandes eventos do setor na China por ano, além de congressos e feiras de franchising no Brasil, para trazer equipamento novo antes que ele vire padrão de mercado.</p>
+      </div>
+      <div class="trust-cell">
+        <svg class="licon draw" viewBox="0 0 44 44"><path d="M6 34V18l8-6 8 6v16M6 34h28M22 34V12l8 6v16"/></svg>
+        <div class="tnum">OPERAÇÃO REAL</div>
+        <h3>Aprendido na prática, não só em relatório</h3>
+        <p>Nossa equipe já geriu operações de autosserviço com faturamento entre os mais altos registrados dentro de uma rede nacional de mais de 300 unidades.</p>
+      </div>
+      <div class="trust-cell">
+        <svg class="licon draw" viewBox="0 0 44 44"><circle cx="22" cy="10" r="4"/><circle cx="10" cy="32" r="4"/><circle cx="34" cy="32" r="4"/><path d="M22 14v8M22 22l-9 7M22 22l9 7"/></svg>
+        <div class="tnum">REDE CURADA</div>
+        <h3>Fornecedores testados antes de entrar no portfólio</h3>
+        <p>Cada fabricante que representamos passa por avaliação técnica e comercial antes de entrar no nosso portfólio. Não indicamos o que não usaríamos.</p>
+      </div>
+      <div class="trust-cell">
+        <svg class="licon draw" viewBox="0 0 44 44"><rect x="10" y="20" width="24" height="16" rx="2"/><path d="M15 20v-6a7 7 0 0 1 12.5-4.3"/><circle class="fillc" cx="22" cy="28" r="2.6"/></svg>
+        <div class="tnum">SEM AMARRA</div>
+        <h3>Quem decide e contrata é você</h3>
+        <p>Entregamos pesquisa, instruções, manuais e fornecedores avaliados. A contratação de prestadores e a compra do equipamento são decisão e obrigação do investidor, sem fidelidade e sem fornecedor obrigatório.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODELO -->
+  <section id="modelo">
+    <div class="eyebrow">Como a GIRO opera</div>
+    <h2 class="section-title reveal">Nosso trabalho começa muito antes da compra.</h2>
+    <p class="lead reveal">Não vendemos um pacote fechado. Trabalhamos em duas frentes complementares, e o que sustenta todas elas é o estudo que vem antes de qualquer decisão.</p>
+
+    <div class="tabs reveal">
+      <button class="tab-btn active" data-tab="t1"><span class="tnum">01</span>Distribuição Exclusiva</button>
+      <button class="tab-btn" data-tab="t2"><span class="tnum">02</span>Curadoria e Diagnóstico</button>
+    </div>
+    <div class="tab-panels reveal">
+      <div class="tab-panel active" id="t1">
+        <h3>Acesso a fornecedores fora do alcance comum</h3>
+        <p class="desc">Atuamos como ponte de representação e distribuição de máquinas de autosserviço pouco ou nada disponíveis no mercado nacional, com relação direta de fábrica, inclusive para outras redes e franquias que buscam diferenciação de portfólio.</p>
+        <div class="two-col">
+          <div><div class="col-label yes">Está incluído</div>
+            <ul class="check yes">
+              <li>Curadoria de fornecedores internacionais</li>
+              <li>Negociação de condições e representação comercial</li>
+              <li>Suporte técnico e apoio à homologação do equipamento</li>
+            </ul>
+          </div>
+          <div><div class="col-label no">Não é</div>
+            <ul class="check no">
+              <li>Revenda genérica de qualquer fornecedor</li>
+              <li>Compra empurrada sem validação prévia de demanda</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" id="t2">
+        <h3>Diagnóstico do investidor e da região</h3>
+        <p class="desc">Cruzamos perfil de capital, tempo disponível e apetite a risco com dados reais da região para recomendar o portfólio de receitas com melhor encaixe, antes de qualquer equipamento ser comprado.</p>
+        <div class="two-col">
+          <div><div class="col-label yes">Está incluído</div>
+            <ul class="check yes">
+              <li>Estudo de viabilidade por região</li>
+              <li>Plano de negócio inicial e projeção de payback</li>
+              <li>Recomendação de portfólio, não de um único modelo</li>
+            </ul>
+          </div>
+          <div><div class="col-label no">Não é</div>
+            <ul class="check no">
+              <li>Promessa de faturamento garantido</li>
+              <li>Gestão terceirizada do dia a dia da operação</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÁQUINAS -->
+  <section id="maquinas">
+    <div class="eyebrow">Portfólio de operações</div>
+    <h2 class="section-title reveal">Nove modelos de negócio no nosso portfólio.</h2>
+    <p class="lead reveal">Cada operação passa pela mesma régua antes de entrar no portfólio: estudo do modelo, avaliação dos fornecedores que atendem aquela frente e comparação entre as opções disponíveis. Clique em qualquer uma para ver o que ela é.</p>
+
+    <div class="mgrid reveal">
+      <div class="mcard" tabindex="0" role="button" aria-label="Lavanderia self-service">
+        <div class="mcard-inner">
+          <div class="mcard-face front">
+            <h3>Lavanderia self-service</h3>
+            <span class="mc-more">O que é</span>
+          </div>
+          <div class="mcard-face back">
+            <span class="mc-back-title">Lavanderia self-service</span>
+            <p>Loja de autosserviço onde o cliente lava e seca a própria roupa, pagando por ciclo, sem atendente no local.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mcard" tabindex="0" role="button" aria-label="Mercadinho autônomo">
+        <div class="mcard-inner">
+          <div class="mcard-face front">
+            <h3>Mercadinho autônomo</h3>
+            <span class="mc-more">O que é</span>
+          </div>
+          <div class="mcard-face back">
+            <span class="mc-back-title">Mercadinho autônomo</span>
+            <p>Loja de conveniência sem funcionário, com geladeira e prateleira abertas, onde o cliente escolhe o produto e paga no totem.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mcard" tabindex="0" role="button" aria-label="Vending de snacks e café">
+        <div class="mcard-inner">
+          <div class="mcard-face front">
+            <h3>Vending de snacks e café</h3>
+            <span class="mc-more">O que é</span>
+          </div>
+          <div class="mcard-face back">
+            <span class="mc-back-title">Vending de snacks e café</span>
+            <p>Máquina que vende snacks, café e bebidas por seleção e pagamento direto, instalada em ponto de circulação de pessoas.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mcard" tabindex="0" role="button" aria-label="Lava-jato express">
+        <div class="mcard-inner">
+          <div class="mcard-face front">
+            <h3>Lava-jato express</h3>
+            <span class="mc-more">O que é</span>
+          </div>
+          <div class="mcard-face back">
+            <span class="mc-back-title">Lava-jato express</span>
+            <p>Estrutura automática que lava o veículo em ciclo próprio, sem operador, com o cliente pagando por lavagem.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mcard" tabindex="0" role="button" aria-label="Recarga de veículos elétricos">
+        <div class="mcard-inner">
+          <div class="mcard-face front">
+            <h3>Recarga de veículos elétricos</h3>
+            <span class="mc-more">O que é</span>
+          </div>
+          <div class="mcard-face back">
+            <span class="mc-back-title">Recarga de veículos elétricos</span>
+            <p>Ponto de recarga onde o motorista conecta o veículo e paga pela energia consumida durante a sessão.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mcard" tabindex="0" role="button" aria-label="Carregador de celular">
+        <div class="mcard-inner">
+          <div class="mcard-face front">
+            <h3>Carregador de celular</h3>
+            <span class="mc-more">O que é</span>
+          </div>
+          <div class="mcard-face back">
+            <span class="mc-back-title">Carregador de celular</span>
+            <p>Armário com compartimentos individuais onde o cliente deixa o celular carregando com segurança enquanto permanece no local.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mcard" tabindex="0" role="button" aria-label="Totem de autoatendimento">
+        <div class="mcard-inner">
+          <div class="mcard-face front">
+            <h3>Totem de autoatendimento</h3>
+            <span class="mc-more">O que é</span>
+          </div>
+          <div class="mcard-face back">
+            <span class="mc-back-title">Totem de autoatendimento</span>
+            <p>Terminal onde o próprio cliente faz o pedido e o pagamento, sem passar por um atendente.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mcard" tabindex="0" role="button" aria-label="Cabine de fotos">
+        <div class="mcard-inner">
+          <div class="mcard-face front">
+            <h3>Cabine de fotos</h3>
+            <span class="mc-more">O que é</span>
+          </div>
+          <div class="mcard-face back">
+            <span class="mc-back-title">Cabine de fotos</span>
+            <p>Cabine fechada onde o cliente tira e imprime fotos na hora, pagando por sessão.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mcard" tabindex="0" role="button" aria-label="Higienização de capacetes">
+        <div class="mcard-inner">
+          <div class="mcard-face front">
+            <h3>Higienização de capacetes</h3>
+            <span class="mc-more">O que é</span>
+          </div>
+          <div class="mcard-face back">
+            <span class="mc-back-title">Higienização de capacetes</span>
+            <p>Máquina que higieniza o capacete em ciclo automático, com o cliente pagando por uso.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-note reveal">
+      <strong>O portfólio é maior do que esta lista.</strong>
+      Acompanhamos fabricantes e feiras no Brasil e no exterior o ano inteiro. Linhas entram e saem do portfólio conforme nossa pesquisa de mercado, e equipamento que perde competitividade é retirado. Procura algo que não está aqui? Já avaliamos, e sabemos dizer por que entrou ou por que ficou de fora.
+    </div>
+    <div class="disclaimer">A GIRO fornece pesquisa de mercado, análise de dados, manuais e curadoria de fornecedores. Obra, projeto, instalação e sistema são executados por prestadores contratados diretamente pelo investidor, nunca por nós.</div>
+  </section>
+
+  <!-- PROCESSO -->
+  <section id="processo">
+    <div class="eyebrow">Jornada do investidor</div>
+    <h2 class="section-title reveal">Do primeiro dado até a abertura.</h2>
+    <p class="lead reveal">Sete etapas, sempre nesta ordem. Nenhuma compra é recomendada antes da etapa 03. Clique em cada etapa para abrir o detalhe.</p>
+
+    <div class="flow-wrap reveal">
+      <svg class="flow-svg" viewBox="0 0 1000 64" preserveAspectRatio="none">
+        <path class="flow-path" d="M20,32 L980,32"/>
+        <path class="flow-path-fill" id="flowFill" d="M20,32 L980,32"/>
+        <circle class="flow-pulse" r="4" id="flowPulse"></circle>
+      </svg>
+      <div class="flow-nodes" id="flowNodes">
+        <div class="fnode active" data-i="0"><div class="fn-num">01</div><h3>Questionário estratégico</h3></div>
+        <div class="fnode" data-i="1"><div class="fn-num">02</div><h3>Leitura de região</h3></div>
+        <div class="fnode" data-i="2"><div class="fn-num">03</div><h3>Recomendação de portfólio</h3></div>
+        <div class="fnode" data-i="3"><div class="fn-num">04</div><h3>Fornecedores e orçamentos</h3></div>
+        <div class="fnode" data-i="4"><div class="fn-num">05</div><h3>Plano de implantação</h3></div>
+        <div class="fnode" data-i="5"><div class="fn-num">06</div><h3>Acompanhamento até a abertura</h3></div>
+        <div class="fnode" data-i="6"><div class="fn-num">07</div><h3>Estratégia comercial e treinamento de operação</h3></div>
+      </div>
+      <div class="flow-detail active" data-d="0"><div class="fd-eyebrow">ETAPA 01</div><p>Capital, tempo disponível, apetite a risco e experiência prévia. É o ponto de partida de qualquer recomendação, antes de falar em qualquer equipamento.</p></div>
+      <div class="flow-detail" data-d="1"><div class="fd-eyebrow">ETAPA 02</div><p>Densidade, renda, concorrência e infraestrutura disponível na região do investidor, cruzadas com o estudo-base da praça de atuação da GIRO.</p></div>
+      <div class="flow-detail" data-d="2"><div class="fd-eyebrow">ETAPA 03</div><p>Cruzamento de dados e indicação de 1 a 3 segmentos com fit real, nunca um segmento único empurrado por padrão.</p></div>
+      <div class="flow-detail" data-d="3"><div class="fd-eyebrow">ETAPA 04</div><p>Indicamos fornecedores já avaliados por critério técnico e comercial, comparamos orçamentos e explicamos a diferença entre eles. Com quem fechar continua sendo escolha sua.</p></div>
+      <div class="flow-detail" data-d="4"><div class="fd-eyebrow">ETAPA 05</div><p>Reunimos layout sugerido, lista de fornecedores, orçamentos comparados, exigências legais da atividade e projeção financeira num plano de implantação. Contratar arquiteto, instalador e contador, e comprar o equipamento, é decisão e responsabilidade do investidor.</p></div>
+      <div class="flow-detail" data-d="5"><div class="fd-eyebrow">ETAPA 06</div><p>Ficamos ao seu lado até o negócio abrir as portas, tirando dúvida, comparando proposta e revisando decisão com você. Não assinamos contrato, não contratamos prestador e não compramos equipamento no seu lugar.</p></div>
+      <div class="flow-detail" data-d="6"><div class="fd-eyebrow">ETAPA 07</div><p>Montamos com você a estratégia comercial de lançamento e captação de clientes, e orientamos o treinamento da operação: rotina de abastecimento, manutenção preventiva, atendimento ao cliente e leitura dos indicadores do negócio.</p></div>
+    </div>
+
+    <div class="resp reveal">
+      <div class="resp-col giro">
+        <div class="rk">O que a GIRO entrega</div>
+        <h3>Pesquisa, orientação e rede</h3>
+        <ul>
+          <li>Estudo de perfil do investidor e leitura da região</li>
+          <li>Recomendação do segmento com os dados que sustentam a escolha</li>
+          <li>Fornecedores avaliados, com orçamentos comparados lado a lado</li>
+          <li>Manuais, instruções e exigências legais da atividade</li>
+          <li>Pesquisa feita junto com você, e não por cima de você</li>
+          <li>Acompanhamento até a abertura do negócio</li>
+          <li>Estratégia comercial e treinamento de operação</li>
+        </ul>
+      </div>
+      <div class="resp-col cli">
+        <div class="rk">O que é do investidor</div>
+        <h3>Decisão, contratação e compra</h3>
+        <ul>
+          <li>Escolher e contratar arquiteto, instalador, contador e demais prestadores</li>
+          <li>Comprar o equipamento do fornecedor que preferir</li>
+          <li>Assinar contratos, alugar o ponto e abrir a empresa</li>
+          <li>Tocar a operação no dia a dia</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAL -->
+  <section id="diferencial">
+    <div class="eyebrow">Comparativo</div>
+    <h2 class="section-title reveal">Por que não comprar direto, e por que não uma franquia tradicional.</h2>
+    <div class="table-wrap reveal">
+    <table class="compare">
+      <thead>
+        <tr><th>Critério</th><th>Comprar sozinho</th><th>Franquia tradicional</th><th class="hl">GIRO</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Escolha do segmento</td><td>Por conta própria, sem dado de mercado</td><td>Modelo único, sem alternativa</td><td class="hl"><strong>Recomendado por dados e diagnóstico</strong></td></tr>
+        <tr><td>Acesso a fornecedor</td><td>Fornecedor genérico, sem exclusividade</td><td>Fornecedor único definido pela matriz</td><td class="hl"><strong>Representação exclusiva, sem revenda genérica</strong></td></tr>
+        <tr><td>Flexibilidade de receita</td><td>Total, mas sem suporte</td><td>Nenhuma, 1 modelo apenas</td><td class="hl"><strong>Múltiplos segmentos, sem fidelidade obrigatória</strong></td></tr>
+        <tr><td>Quem contrata e executa</td><td>Você resolve tudo sozinho, sem orientação</td><td>Fornecedor e padrão impostos pela matriz</td><td class="hl"><strong>Você contrata quem quiser, com nossa orientação e nossa rede</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="disclaimer">A GIRO não garante faturamento nem substitui a gestão do investidor. O compromisso é sobre pesquisa, orientação e curadoria. A contratação de prestadores e a compra de equipamento são decisão e obrigação do investidor.</div>
+  </section>
+
+  <!-- CALCULADORA DE ROYALTIES -->
+  <section id="royalties">
+    <div class="eyebrow">O que você não paga</div>
+    <h2 class="section-title reveal">Royalties que ficam com você.</h2>
+    <p class="lead reveal">Uma franquia cobra royalties todo mês sobre o seu faturamento, mais fundo de marketing, taxa de entrada e taxa de sistema. Na GIRO você opera com marca própria e não paga nada disso. O nosso valor está no diagnóstico e na curadoria de fornecedores, não no equipamento. Escolha o segmento e o porte e veja o quanto uma franquia levaria do seu caixa.</p>
+
+    <div class="calc reveal">
+      <div class="calc-in">
+        <div class="fld">
+          <label for="cSeg">Segmento</label>
+          <select id="cSeg"></select>
+        </div>
+        <div class="fld">
+          <label for="cInv">Porte da operação</label>
+          <div class="val" id="cInvOut">Média</div>
+          <input type="range" id="cInv" min="0" max="3" step="1" value="1">
+          <div class="range-ticks"><span>Enxuta</span><span>Média</span><span>Robusta</span><span>Multi-unidade</span></div>
+        </div>
+        <button class="adv-toggle" id="advBtn" type="button">Ajustar taxas da franquia</button>
+        <div class="adv" id="adv">
+          <div class="grid2">
+            <div class="fld"><label for="cRoy">Royalties (%)</label><input type="number" id="cRoy" value="6" step="0.5" min="0" max="20"></div>
+            <div class="fld"><label for="cMkt">Fundo de marketing (%)</label><input type="number" id="cMkt" value="2" step="0.5" min="0" max="10"></div>
+            <div class="fld"><label for="cEnt">Taxa de entrada (R$)</label><input type="number" id="cEnt" value="30000" step="1000" min="0" max="200000"></div>
+            <div class="fld"><label for="cSis">Taxa de sistema (R$/mês)</label><input type="number" id="cSis" value="400" step="50" min="0" max="5000"></div>
+          </div>
+          <div class="fld" style="margin-bottom:0;"><label for="cAno">Período do contrato (anos)</label><input type="number" id="cAno" value="5" min="1" max="15"></div>
+        </div>
+      </div>
+
+      <div class="calc-out">
+        <div class="cr-label">Em <span id="rAno">5</span> anos, uma franquia levaria do seu caixa</div>
+        <div class="cr-big" id="rTot">R$ 0</div>
+        <div class="cr-sub">Com a GIRO, esse valor fica com você.</div>
+        <ul class="cr-break">
+          <li>Royalties <span id="rRoy">R$ 0</span></li>
+          <li>Fundo de marketing <span id="rMkt">R$ 0</span></li>
+          <li>Taxa de entrada <span id="rEnt">R$ 0</span></li>
+          <li>Taxa de sistema <span id="rSis">R$ 0</span></li>
+        </ul>
+        <div class="cr-note">A GIRO não cobra royalties, fundo de marketing nem taxa de entrada. O diagnóstico é contratado uma única vez e o equipamento é seu.</div>
+      </div>
+    </div>
+    <div class="calc-foot">Estimativa baseada em médias praticadas no franchising brasileiro. As taxas de cada rede constam da circular de oferta de franquia, documento que o franqueador é obrigado a entregar antes da assinatura.</div>
+  </section>
+
+  <!-- CLOSING -->
+  <section id="contato">
+    <div class="closing reveal">
+      <div class="eyebrow" style="justify-content:center;">Próximo passo</div>
+      <h2>Antes de decidir o investimento, vamos decidir os dados.</h2>
+      <p>O primeiro passo com a GIRO é o diagnóstico, não a compra. A partir dele, o segmento certo se torna uma decisão orientada, não uma aposta.</p>
+      <a href="https://wa.me/556193174223?text=Ol%C3%A1%2C%20quero%20conhecer%20a%20GIRO" target="_blank" rel="noopener" class="btn btn-primary magnet">Falar no WhatsApp</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-grid">
+      <div>
+        <div class="logo"><svg viewBox="0 0 200 200"><path d="M 123.26 36.10 A 68 68 0 1 1 36.95 74.53" fill="none" stroke="#5EEAD4" stroke-width="15" stroke-linecap="round"/><circle cx="72.34" cy="37.88" r="15" fill="#E8834A"/></svg>GIRO</div>
+        <div class="foot-note">HOLDING DE AUTOSSERVIÇO &amp; AUTOMAÇÃO</div>
+      </div>
+      <div class="foot-right">
+        <div class="foot-links">
+          <a href="https://wa.me/556193174223" target="_blank" rel="noopener" class="foot-link">WhatsApp +55 61 9317-4223</a>
+          <a href="#" class="foot-link" data-pending="instagram">Instagram</a>
+        </div>
+        <div class="foot-legal">© 2026 GIRO. CNPJ 60.662.444/0001-14</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<a id="wa-float" href="https://wa.me/556193174223?text=Ol%C3%A1%2C%20quero%20conhecer%20a%20GIRO" target="_blank" rel="noopener" aria-label="Falar com a GIRO no WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+
+<div id="back-top" title="Voltar ao topo">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</div>
+
+<script>
+  // ---- tabs ----
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // ---- cards do portfólio viram ao clicar ----
+  document.querySelectorAll('.mcard').forEach(function(card){
+    function flip(){ card.classList.toggle('open'); }
+    card.addEventListener('click', flip);
+    card.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); flip(); }
+    });
+  });
+
+  // ---- accordion ----
+  document.querySelectorAll('.acc-item').forEach(item=>{
+    const head = item.querySelector('.acc-head');
+    const body = item.querySelector('.acc-body');
+    if(item.classList.contains('open')){ body.style.maxHeight = body.scrollHeight + 'px'; }
+    head.addEventListener('click', ()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item').forEach(i=>{
+        i.classList.remove('open');
+        i.querySelector('.acc-body').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ---- reveal on scroll ----
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // ---- count-up stats ----
+  const counters = document.querySelectorAll('.k[data-count]');
+  const cobs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el = e.target;
+        const target = parseInt(el.dataset.count,10);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        const dur = 1400;
+        const t0 = performance.now();
+        function tick(t){
+          const p = Math.min(1, (t-t0)/dur);
+          const eased = 1 - Math.pow(1-p, 3);
+          const val = Math.round(target*eased);
+          el.textContent = prefix + val.toLocaleString('pt-BR') + suffix;
+          if(p<1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        cobs.unobserve(el);
+      }
+    });
+  }, {threshold:.6});
+  counters.forEach(c=>cobs.observe(c));
+
+
+
+  // ---- calculadora de royalties ----
+  (function(){
+    // Faturamento mensal de referência por segmento (porte "Enxuta").
+    // O porte aplica um multiplicador sobre esse valor. Ajuste conforme sua base.
+    var SEG = [
+      { n:'Lavanderia self-service',       fat:26000 },
+      { n:'Mercadinho autônomo',           fat:19000 },
+      { n:'Vending de snacks e café',      fat:10000 },
+      { n:'Lava-jato express',             fat:30000 },
+      { n:'Recarga de veículos elétricos', fat:12000 },
+      { n:'Carregador de celular',         fat:5600  },
+      { n:'Totem de autoatendimento',      fat:4500  },
+      { n:'Cabine de fotos',               fat:11000 },
+      { n:'Higienização de capacetes',     fat:6300  }
+    ];
+    // Porte: rótulo + multiplicador de faturamento
+    var PORTE = [
+      { n:'Enxuta',        mult:1 },
+      { n:'Média',         mult:2.2 },
+      { n:'Robusta',       mult:4 },
+      { n:'Multi-unidade', mult:7 }
+    ];
+    var $ = function(id){ return document.getElementById(id); };
+    var seg=$('cSeg'), inv=$('cInv'), invOut=$('cInvOut');
+    var roy=$('cRoy'), mkt=$('cMkt'), ent=$('cEnt'), sis=$('cSis'), ano=$('cAno');
+    if (!seg || !inv) return;
+
+    SEG.forEach(function(o,i){
+      var op=document.createElement('option'); op.value=i; op.textContent=o.n; seg.appendChild(op);
+    });
+
+    function brl(v){
+      return 'R$ ' + Math.round(v).toLocaleString('pt-BR');
+    }
+    function num(el, def){
+      var v = parseFloat(String(el.value).replace(',','.'));
+      if (!isFinite(v) || v < 0) return def;
+      var max = parseFloat(el.max);
+      if (isFinite(max) && v > max) v = max;
+      var min = parseFloat(el.min);
+      if (isFinite(min) && v < min) v = min;
+      return v;
+    }
+    function render(){
+      var o = SEG[seg.value|0] || SEG[0];
+      var p = PORTE[Math.max(0, Math.min(3, parseInt(inv.value,10)||0))];
+      invOut.textContent = p.n;
+      var anos = Math.max(1, Math.min(15, num(ano, 5)));
+      var meses = anos * 12;
+      var f = o.fat * p.mult;
+      var vRoy = f * (num(roy,0)/100) * meses;
+      var vMkt = f * (num(mkt,0)/100) * meses;
+      var vEnt = num(ent,0);
+      var vSis = num(sis,0) * meses;
+      var total = vRoy + vMkt + vEnt + vSis;
+      $('rAno').textContent = anos;
+      $('rRoy').textContent = brl(vRoy);
+      $('rMkt').textContent = brl(vMkt);
+      $('rEnt').textContent = brl(vEnt);
+      $('rSis').textContent = brl(vSis);
+      $('rTot').textContent = brl(total);
+    }
+
+    seg.addEventListener('change', render);
+    inv.addEventListener('input', render);
+    [roy, mkt, ent, sis, ano].forEach(function(el){
+      el.addEventListener('input', render);
+      el.addEventListener('blur', function(){ el.value = num(el, 0); render(); });
+    });
+    $('advBtn').addEventListener('click', function(){
+      var a = $('adv'); var open = a.classList.toggle('open');
+      this.textContent = open ? 'Ocultar taxas da franquia' : 'Ajustar taxas da franquia';
+    });
+
+    render();
+  })();
+
+  // ---- interactive process flow ----
+  (function(){
+    const nodes = document.querySelectorAll('#flowNodes .fnode');
+    const details = document.querySelectorAll('.flow-detail');
+    const fill = document.getElementById('flowFill');
+    const pulse = document.getElementById('flowPulse');
+    const total = nodes.length;
+    const pathLen = 960;
+
+    function setActive(i){
+      nodes.forEach(n=>n.classList.toggle('active', +n.dataset.i === i));
+      details.forEach(d=>d.classList.toggle('active', +d.dataset.d === i));
+      const frac = total>1 ? i/(total-1) : 0;
+      fill.style.strokeDashoffset = pathLen - (pathLen*frac);
+      const x = 20 + frac*960;
+      pulse.setAttribute('cx', x);
+      pulse.setAttribute('cy', 32);
+    }
+    nodes.forEach(n=>{
+      n.addEventListener('click', ()=> setActive(+n.dataset.i));
+    });
+    setActive(0);
+
+    // gentle idle pulse travel when in view and no interaction yet
+    let autoIdx = 0, userTouched = false;
+    nodes.forEach(n=> n.addEventListener('click', ()=> userTouched = true));
+    const flowObs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const iv = setInterval(()=>{
+            if(userTouched){ clearInterval(iv); return; }
+            autoIdx = (autoIdx+1) % total;
+            setActive(autoIdx);
+          }, 2600);
+          flowObs.disconnect();
+        }
+      });
+    }, {threshold:.4});
+    flowObs.observe(document.querySelector('.flow-wrap'));
+  })();
+
+  // ---- mobile nav toggle ----
+  const navToggle = document.getElementById('navToggle');
+  const navMobile = document.getElementById('navMobile');
+  if (navToggle && navMobile){
+    navToggle.addEventListener('click', ()=>{
+      const open = navToggle.classList.toggle('open');
+      navMobile.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    });
+    navMobile.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=>{
+      navToggle.classList.remove('open');
+      navMobile.classList.remove('open');
+      document.body.style.overflow = '';
+      navToggle.setAttribute('aria-expanded','false');
+      navToggle.setAttribute('aria-label','Abrir menu');
+    }));
+  }
+
+  // ---- scroll progress + nav scroll-spy ----
+  const progress = document.getElementById('progress');
+  const navLinks = document.querySelectorAll('#nav a, #navMobile a[href^="#"]');
+  const sections = [...navLinks].map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  function onScroll(){
+    const h = document.documentElement;
+    const p = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progress.style.width = p + '%';
+    document.getElementById('back-top').classList.toggle('show', h.scrollTop > 900);
+    document.querySelector('header.topbar').classList.toggle('scrolled', h.scrollTop > 30);
+    let current = null;
+    sections.forEach(s=>{ if(s.getBoundingClientRect().top < 140) current = s; });
+    navLinks.forEach(a=>a.classList.toggle('active', current && a.getAttribute('href') === '#'+current.id));
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  document.getElementById('back-top').addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+  // ---- cursor glow (hero) ----
+  const glow = document.getElementById('glow');
+  const heroSec = document.getElementById('hero');
+  document.addEventListener('mousemove', (e)=>{
+    const r = heroSec.getBoundingClientRect();
+    const inside = e.clientY >= r.top && e.clientY <= r.bottom;
+    glow.style.opacity = inside ? '1' : '0';
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+
+  // ---- magnetic buttons ----
+  document.querySelectorAll('.magnet').forEach(btn=>{
+    btn.addEventListener('mousemove', (e)=>{
+      const r = btn.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width/2) * 0.25;
+      const y = (e.clientY - r.top - r.height/2) * 0.35;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    btn.addEventListener('mouseleave', ()=>{ btn.style.transform = 'translate(0,0)'; });
+  });
+</script>
+
+<script>
+(function(){
+  // ============================================================
+  // GIRO · vitrine 3D do portfólio (renderizador próprio, sem
+  // dependência externa: roda em canvas 2D, funciona offline)
+  // ============================================================
+  var canvas = document.getElementById('heroCanvas');
+  if (!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  var CYAN   = [94, 234, 212];
+  var COPPER = [232, 131, 74];
+  var STEEL  = [58, 108, 146];
+  var STEEL_D= [38, 78, 110];
+  var DARK   = [16, 36, 54];
+  var GLASS  = [40, 92, 120];
+  var PANEL  = [20, 46, 68];
+  var LIGHTM = [126, 156, 180];
+
+  // ---------- geometria ----------
+  function box(cx, cy, cz, w, h, d, o){
+    o = o || {};
+    var x0=cx-w/2, x1=cx+w/2, y0=cy-h/2, y1=cy+h/2, z0=cz-d/2, z1=cz+d/2;
+    var v = [[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1],
+             [x0,y0,z0],[x1,y0,z0],[x1,y1,z0],[x0,y1,z0]];
+    var c = o.c || STEEL;
+    var f = [
+      {p:[v[0],v[1],v[2],v[3]], c:o.front||c, screen:o.screen, alpha:o.frontAlpha, accent:o.accent},
+      {p:[v[5],v[4],v[7],v[6]], c:o.back||c, accent:o.accent},
+      {p:[v[4],v[0],v[3],v[7]], c:o.side||c, accent:o.accent},
+      {p:[v[1],v[5],v[6],v[2]], c:o.side||c, accent:o.accent},
+      {p:[v[3],v[2],v[6],v[7]], c:o.top||c, accent:o.accent},
+      {p:[v[4],v[5],v[1],v[0]], c:o.bottom||o.side||c, accent:o.accent}
+    ];
+    if (o.screenOn === 'right'){ f[0].screen = undefined; f[3].screen = o.screen; }
+    if (o.only) { var keep=[]; o.only.forEach(function(i){ keep.push(f[i]); }); return keep; }
+    return f;
+  }
+
+  // disco vertical voltado para +Z
+  function disc(cx, cy, cz, r, segs, color, o){
+    o = o || {};
+    var pts = [];
+    for (var i=0;i<segs;i++){
+      var a = i/segs*Math.PI*2;
+      pts.push([cx + Math.cos(a)*r, cy + Math.sin(a)*r*(o.ry||1), cz]);
+    }
+    return [{p:pts, c:color, flat:true, alpha:o.alpha, accent:o.accent}];
+  }
+
+  // cilindro vertical
+  function cyl(cx, cy, cz, r, h, segs, color, topColor){
+    var faces = [], i, a1, a2, top=[];
+    for (i=0;i<segs;i++){
+      a1 = i/segs*Math.PI*2; a2 = (i+1)/segs*Math.PI*2;
+      var p1=[cx+Math.cos(a1)*r, cy,   cz+Math.sin(a1)*r];
+      var p2=[cx+Math.cos(a2)*r, cy,   cz+Math.sin(a2)*r];
+      var p3=[cx+Math.cos(a2)*r, cy+h, cz+Math.sin(a2)*r];
+      var p4=[cx+Math.cos(a1)*r, cy+h, cz+Math.sin(a1)*r];
+      faces.push({p:[p1,p2,p3,p4], c:color});
+      top.push([cx+Math.cos(a1)*r, cy+h, cz+Math.sin(a1)*r]);
+    }
+    faces.push({p:top, c:topColor||color});
+    return faces;
+  }
+
+  function rotYpt(p, s, c){ return [p[0]*c + p[2]*s, p[1], -p[0]*s + p[2]*c]; }
+
+  function placeFaces(faces, angle, px, pz){
+    var s = Math.sin(angle), c = Math.cos(angle);
+    return faces.map(function(f){
+      return {
+        p: f.p.map(function(v){ var r = rotYpt(v, s, c); return [r[0]+px, r[1], r[2]+pz]; }),
+        c: f.c, screen: f.screen, flat: f.flat, alpha: f.alpha, accent: f.accent
+      };
+    });
+  }
+
+  // ---------- as 5 máquinas do portfólio ----------
+  // ---------- as máquinas do portfólio, modeladas a partir dos equipamentos reais ----------
+  var SILVER   = [140,150,158], SILVER_D = [96,106,114], CHROME = [196,206,214];
+  var WHITE    = [222,227,231], WHITE_D  = [176,182,188];
+  var BLACKB   = [40,45,51],    BLACK_D  = [24,28,33];
+  var PINK     = [226,158,186], PINK_D   = [186,120,150];
+  var ORANGE   = [220,112,44],  ORANGE_D = [176,84,30];
+  var WOOD     = [158,120,74],  WOOD_D   = [118,88,54];
+  var GREEN    = [112,172,64],  GREEN_D  = [82,130,44];
+  var BLUE     = [58,132,206],  BLUE_D   = [40,96,158];
+  var CREAM    = [214,210,200];
+  var GLASSF   = [150,205,220];
+  var UVGLOW   = [158,116,224];
+
+  function mLavanderia(){
+    var f = [], k;
+    var W=1.15, H=2.15, D=0.95;
+    f = f.concat(box(0, H/2, 0, W, H, D, {c:SILVER, top:CHROME, side:SILVER_D, front:[152,162,170], back:[86,96,104]}));
+    // painel de comandos central
+    f = f.concat(box(0, H*0.485, D/2+0.008, W*0.92, 0.26, 0.02, {c:[46,52,58]}));
+    f = f.concat(box(-W*0.14, H*0.485, D/2+0.020, 0.16, 0.07, 0.01, {c:[90,220,120], accent:true}));
+    f = f.concat(box( W*0.22, H*0.485, D/2+0.020, 0.26, 0.10, 0.01, {c:[176,184,190]}));
+    // portas redondas: secadora em cima, lavadora embaixo
+    var doors = [H*0.765, H*0.205];
+    for (k=0;k<2;k++){
+      var dy = doors[k], r = k===0 ? 0.40 : 0.355;
+      f = f.concat(disc(0, dy, D/2+0.012, r, 30, CHROME));
+      f = f.concat(disc(0, dy, D/2+0.024, r*0.86, 30, [18,22,26]));
+      f = f.concat(disc(0, dy, D/2+0.034, r*0.72, 30, [58,74,88], {alpha:0.92}));
+      f = f.concat(disc(-r*0.28, dy+r*0.30, D/2+0.042, r*0.26, 20, [220,232,238], {alpha:0.30}));
+    }
+    // testeira
+    f = f.concat(box(0, H*0.955, D/2+0.008, W*0.8, 0.13, 0.02, {c:[46,52,58], screen:'brand', front:[46,52,58]}));
+    return {faces:f, w:W, h:H, d:D, name:'Lavanderia self-service', tag:'LAVA E SECA ROUPA'};
+  }
+
+  function mMercadinho(){
+    var f = [], i, r;
+    var W=1.36, H=1.95, D=0.66;
+    // estrutura em madeira
+    f = f.concat(box(0, H/2, 0, W, H, D, {c:WOOD, top:[186,148,100], side:WOOD_D, front:[168,130,84], back:[104,78,48]}));
+    // testeira verde
+    f = f.concat(box(0, H*0.925, D/2+0.010, W*0.96, 0.20, 0.02, {c:GREEN, screen:'brand', front:GREEN, accent:true}));
+    // quiosque de pagamento à esquerda
+    f = f.concat(box(-W*0.36, H*0.46, D/2+0.010, W*0.28, H*0.76, 0.03, {c:GREEN_D}));
+    f = f.concat(box(-W*0.36, H*0.70, D/2+0.030, W*0.22, 0.24, 0.02, {c:[16,20,26], screen:'ad', front:[16,20,26]}));
+    f = f.concat(box(-W*0.36, H*0.44, D/2+0.030, W*0.22, 0.22, 0.02, {c:[16,20,26], screen:'screen', front:[16,20,26]}));
+    f = f.concat(box(-W*0.36, H*0.25, D/2+0.030, W*0.14, 0.09, 0.02, {c:[40,46,52]}));
+    // três portas de geladeira à direita
+    for (i=0;i<2;i++){
+      var gx = W*0.06 + i*(W*0.32);
+      f = f.concat(box(gx, H*0.50, D/2+0.006, W*0.28, H*0.80, 0.008, {c:[10,16,22]}));
+      for (r=0;r<4;r++){
+        var gy = H*0.20 + r*0.34;
+        f = f.concat(box(gx, gy, D/2+0.036, W*0.26, 0.02, 0.05, {c:[70,88,104]}));
+        for (var q=0;q<3;q++){
+          var col = (q+r+i)%3===0 ? [212,84,72] : ((q+r+i)%3===1 ? [235,178,64] : [96,164,208]);
+          f = f.concat(box(gx - W*0.085 + q*(W*0.085), gy+0.10, D/2+0.056, 0.085, 0.16, 0.05, {c:col, front:col}));
+        }
+      }
+      f = f.concat(box(gx, H*0.50, D/2+0.095, W*0.285, H*0.81, 0.01, {c:[70,150,175], frontAlpha:0.22, front:GLASSF, only:[0]}));
+      f = f.concat(box(gx + W*0.135, H*0.50, D/2+0.105, 0.02, H*0.78, 0.01, {c:[190,198,204]}));
+      f = f.concat(box(gx, H*0.895, D/2+0.105, W*0.26, 0.02, 0.01, {c:GREEN, accent:true}));
+    }
+    return {faces:f, w:W, h:H, d:D, name:'Mercadinho autônomo', tag:'VENDE SEM OPERADOR'};
+  }
+
+  function mVending(){
+    var f = [], r, i;
+    var W=1.2, H=2.1, D=0.8;
+    f = f.concat(box(0, H/2, 0, W, H, D, {c:BLACKB, top:[70,78,86], side:BLACK_D, front:[46,52,58], back:[20,24,28]}));
+    // vitrine à esquerda
+    var gx = -W*0.16, gw = W*0.62;
+    f = f.concat(box(gx, H*0.60, D/2+0.004, gw, H*0.66, 0.008, {c:[8,12,18]}));
+    for (r=0;r<5;r++){
+      var y = H*0.33 + r*0.21;
+      f = f.concat(box(gx, y, D/2+0.030, gw*0.94, 0.018, 0.05, {c:[62,70,78]}));
+      for (i=0;i<4;i++){
+        var col = (i+r)%4===0 ? [226,92,72] : ((i+r)%4===1 ? [240,186,66] : ((i+r)%4===2 ? [92,170,214] : [126,196,110]));
+        f = f.concat(box(gx - gw*0.34 + i*(gw*0.23), y+0.085, D/2+0.050, 0.09, 0.13, 0.05, {c:col, front:col}));
+      }
+    }
+    f = f.concat(box(gx, H*0.60, D/2+0.090, gw+0.03, H*0.67, 0.01, {c:[70,150,175], frontAlpha:0.24, front:GLASSF, only:[0]}));
+    f = f.concat(box(gx, H*0.935, D/2+0.100, gw+0.03, 0.03, 0.01, {c:[186,194,200]}));
+    f = f.concat(box(gx, H*0.265, D/2+0.100, gw+0.03, 0.03, 0.01, {c:[186,194,200]}));
+    // coluna de comando à direita
+    var cx2 = W*0.32;
+    f = f.concat(box(cx2, H*0.55, D/2+0.008, W*0.28, H*0.80, 0.02, {c:[168,176,184]}));
+    f = f.concat(box(cx2, H*0.84, D/2+0.022, W*0.20, 0.20, 0.01, {c:[16,20,26], screen:'screen', front:[16,20,26]}));
+    for (r=0;r<4;r++){
+      for (i=0;i<3;i++){
+        f = f.concat(box(cx2 - W*0.07 + i*(W*0.07), H*0.62 - r*0.075, D/2+0.022, 0.05, 0.05, 0.01, {c:[52,58,64]}));
+      }
+    }
+    f = f.concat(box(cx2, H*0.30, D/2+0.022, W*0.18, 0.05, 0.01, {c:[30,36,42]}));
+    // porta de retirada
+    f = f.concat(box(0, H*0.10, D/2+0.010, W*0.86, 0.20, 0.02, {c:[14,18,24]}));
+    return {faces:f, w:W, h:H, d:D, name:'Vending de snacks e café', tag:'VENDE SNACKS E BEBIDAS'};
+  }
+
+  function mLavaJato(){
+    var f = [], k;
+    var W=1.42, H=1.9, D=0.58;
+    // colunas laterais
+    for (k=0;k<2;k++){
+      var sx = (k===0 ? -1 : 1) * (W/2 - 0.14);
+      f = f.concat(box(sx, H*0.42, 0, 0.26, H*0.84, 0.34, {c:BLUE, top:[70,140,206], side:BLUE_D, front:[58,128,196]}));
+      f = f.concat(box(sx, 0.05, 0, 0.36, 0.10, 0.44, {c:BLACK_D, top:[54,60,68]}));
+      // turbina de secagem
+      f = f.concat(disc(sx, H*0.56, 0.18, 0.155, 22, [34,38,44]));
+      f = f.concat(disc(sx, H*0.56, 0.19, 0.115, 22, [80,92,104]));
+      f = f.concat(disc(sx, H*0.56, 0.20, 0.04, 14, [96,170,220]));
+    }
+    // viga superior
+    f = f.concat(box(0, H*0.93, 0, W, 0.30, 0.44, {c:WHITE, top:[240,244,248], side:WHITE_D, front:[236,240,244]}));
+    f = f.concat(box(0, H*0.93, 0.23, W*0.66, 0.07, 0.02, {c:BLUE, accent:true}));
+    f = f.concat(box(0, H*1.06, 0, W*0.5, 0.14, 0.3, {c:WHITE_D, top:[236,240,244], screen:'brand', front:WHITE_D}));
+    // barra de aspersão
+    f = f.concat(box(0, H*0.74, 0.10, W*0.86, 0.07, 0.07, {c:[64,72,80]}));
+    return {faces:f, w:W, h:H*1.13, d:D, name:'Lava-jato express', tag:'LAVA O VEÍCULO'};
+  }
+
+  function mRecargaEV(){
+    var f = [];
+    var W=0.44, H=1.6, D=0.3;
+    f = f.concat(box(0, 0.04, 0, 0.34, 0.08, 0.28, {c:BLACK_D, top:[70,78,86]}));
+    // poste de aço
+    f = f.concat(box(0, H*0.46, 0, 0.17, H*0.92, 0.09, {c:[158,168,178], top:[196,204,210], side:[112,122,132]}));
+    // carregador
+    f = f.concat(box(0, H*0.80, 0.085, W, 0.56, 0.19, {c:CREAM, top:[236,232,224], side:[178,174,166], front:[228,224,216]}));
+    f = f.concat(box(0, H*0.90, 0.185, W*0.56, 0.11, 0.02, {c:[26,30,36]}));
+    f = f.concat(box(0, H*0.90, 0.197, W*0.30, 0.04, 0.01, {c:[228,96,72], accent:true}));
+    // suporte do conector
+    f = f.concat(box(0, H*0.60, 0.10, 0.14, 0.14, 0.12, {c:[52,58,66]}));
+    return {faces:f, w:W, h:H*1.05, d:D, name:'Recarga de veículos elétricos', tag:'CARREGA VEÍCULO ELÉTRICO',
+            cable:{from:[0.05, H*0.60, 0.16], mid:[0.42, H*0.36, 0.30], to:[0.24, 0.12, 0.34]}};
+  }
+
+  function mCarregadorCel(){
+    var f = [], r, i;
+    var W=1.0, H=1.7, D=0.4;
+    f = f.concat(box(0, H/2, 0, W, H, D, {c:WHITE, top:[240,243,246], side:WHITE_D, front:[232,236,240], back:[168,174,180]}));
+    // faixa superior
+    f = f.concat(box(0, H*0.88, D/2+0.010, W*0.82, 0.24, 0.02, {c:[236,240,244], screen:'brand', front:[236,240,244]}));
+    // grade de compartimentos
+    for (r=0;r<4;r++){
+      for (i=0;i<3;i++){
+        var lx = -W*0.28 + i*(W*0.28), ly = H*0.66 - r*0.17;
+        f = f.concat(box(lx, ly, D/2+0.010, W*0.24, 0.145, 0.02, {c:[204,210,216]}));
+        f = f.concat(box(lx, ly+0.015, D/2+0.024, W*0.19, 0.085, 0.01, {c:[96,132,158], frontAlpha:0.55, front:[150,200,220], only:[0]}));
+        f = f.concat(box(lx + W*0.085, ly, D/2+0.026, 0.028, 0.028, 0.01, {c:[126,134,142]}));
+      }
+    }
+    return {faces:f, w:W, h:H, d:D, name:'Carregador de celular', tag:'CARREGA CELULAR'};
+  }
+
+  function mTotemAtend(){
+    var f = [];
+    var W=0.62, H=1.05, D=0.48;
+    f = f.concat(box(0, 0.045, 0, W+0.14, 0.09, D+0.10, {c:WHITE, top:[240,243,246]}));
+    // pedestal de madeira
+    f = f.concat(box(0, H*0.5+0.09, 0, W, H, D, {c:WOOD, top:[190,152,104], side:WOOD_D, front:[176,140,92]}));
+    // frente branca
+    f = f.concat(box(0, H*0.44, D/2+0.008, W*0.62, H*0.56, 0.02, {c:WHITE, front:[236,239,242]}));
+    // terminal de pagamento
+    f = f.concat(box(0, H*0.60, D/2+0.10, 0.21, 0.30, 0.16, {c:[36,40,46], top:[70,78,86], front:[52,58,66]}));
+    f = f.concat(box(0, H*0.68, D/2+0.19, 0.15, 0.11, 0.01, {c:[16,20,26]}));
+    // tablet inclinado
+    var ty = H + 0.42, tz = 0.02, tw = 0.80, th = 0.58, tilt = -0.34;
+    var cs = Math.cos(tilt), sn = Math.sin(tilt);
+    function tiltPt(p){
+      var y = p[1]-ty, z = p[2]-tz;
+      return [p[0], ty + y*cs - z*sn, tz + y*sn + z*cs];
+    }
+    var shell = box(0, ty, tz, tw, th, 0.07, {c:[212,216,220], top:[238,241,244], side:[168,174,180], front:[226,230,234]});
+    var face  = box(0, ty, tz+0.045, tw*0.90, th*0.86, 0.01, {c:[16,20,26], screen:'screen', front:[16,20,26]});
+    shell.concat(face).forEach(function(fc){ f.push({p: fc.p.map(tiltPt), c:fc.c, screen:fc.screen}); });
+    return {faces:f, w:W, h:H+0.8, d:D, name:'Totem de autoatendimento', tag:'RECEBE PEDIDO E PAGAMENTO'};
+  }
+
+  function mFotos(){
+    var f = [];
+    var W=1.35, H=2.15, D=1.05;
+    // piso e teto da cabine
+    f = f.concat(box(0, 0.06, 0, W, 0.12, D, {c:BLACK_D, top:[54,60,68]}));
+    f = f.concat(box(0, H-0.07, 0, W, 0.14, D, {c:PINK, top:[240,180,206]}));
+    // paredes
+    f = f.concat(box(-W/2+0.04, H/2, 0, 0.08, H, D, {c:PINK, side:PINK_D, front:[236,172,200]}));
+    f = f.concat(box( W/2-0.04, H/2, 0, 0.08, H, D, {c:PINK, side:PINK_D, front:[236,172,200]}));
+    f = f.concat(box(0, H/2, -D/2+0.04, W, H, 0.08, {c:PINK_D, front:[196,132,162]}));
+    // painel frontal fechado (lado esquerdo)
+    f = f.concat(box(-W*0.26, H/2, D/2-0.03, W*0.46, H, 0.06, {c:PINK, front:[240,178,204]}));
+    f = f.concat(box(-W*0.26, H*0.62, D/2+0.014, W*0.30, 0.34, 0.02, {c:[16,20,26], screen:'screen', front:[16,20,26]}));
+    f = f.concat(box(-W*0.26, H*0.40, D/2+0.014, W*0.18, 0.07, 0.02, {c:[14,18,24]}));
+    f = f.concat(box(-W*0.26, H*0.82, D/2+0.014, W*0.30, 0.10, 0.02, {c:[248,206,224]}));
+    // cortina escura na entrada (lado direito)
+    f = f.concat(box(W*0.23, H*0.55, D/2-0.16, W*0.46, H*0.86, 0.05, {c:[18,20,24], front:[30,32,38]}));
+    // banco interno
+    f = f.concat(box(W*0.23, 0.42, -D/2+0.20, W*0.40, 0.10, 0.26, {c:[52,58,66]}));
+    // letreiro superior
+    f = f.concat(box(0, H+0.20, -0.06, W*0.60, 0.34, 0.34, {c:[34,38,44], top:[70,78,86], screen:'brand', front:[34,38,44]}));
+    return {faces:f, w:W, h:H+0.38, d:D, name:'Cabine de fotos', tag:'TIRA E IMPRIME FOTOS'};
+  }
+
+  function mCapacete(){
+    var f = [], k, i;
+    var W=1.0, H=2.15, D=0.6;
+    f = f.concat(box(0, H/2, 0, W, H, D, {c:ORANGE, top:[240,146,72], side:ORANGE_D, front:[232,124,54], back:[150,72,26]}));
+    // coluna preta lateral
+    f = f.concat(box(-W*0.34, H/2, D/2+0.006, W*0.30, H*0.98, 0.02, {c:[26,28,32]}));
+    // testeira branca
+    f = f.concat(box(0, H*0.955, D/2+0.010, W*0.94, 0.15, 0.02, {c:ORANGE, screen:'brand', front:ORANGE, accent:true}));
+    // tela de anúncio
+    f = f.concat(box(W*0.12, H*0.80, D/2+0.014, W*0.62, 0.34, 0.02, {c:[14,18,24], screen:'ad', front:[14,18,24]}));
+    // duas câmaras com brilho de higienização
+    var chambers = [H*0.545, H*0.235];
+    for (k=0;k<2;k++){
+      var cy = chambers[k];
+      f = f.concat(box(W*0.12, cy, D/2+0.012, W*0.60, 0.36, 0.02, {c:[16,18,22]}));
+      f = f.concat(box(W*0.12, cy, D/2+0.026, W*0.50, 0.29, 0.01, {c:UVGLOW, frontAlpha:0.6, front:[190,160,240], only:[0], accent:true}));
+      f = f.concat(box(W*0.12, cy+0.14, D/2+0.030, W*0.36, 0.025, 0.01, {c:[214,198,255]}));
+      f = f.concat(box(W*0.40, cy, D/2+0.030, 0.035, 0.10, 0.01, {c:[196,202,208]}));
+    }
+    // faixa de ícones entre as câmaras
+    for (i=0;i<4;i++){
+      var ic = i===0 ? [96,170,220] : (i===1 ? [168,120,224] : (i===2 ? [124,196,110] : [92,180,214]));
+      f = f.concat(disc(W*0.12 - 0.22 + i*0.15, H*0.395, D/2+0.016, 0.045, 16, ic));
+    }
+    return {faces:f, w:W, h:H, d:D, name:'Higienização de capacetes', tag:'HIGIENIZA CAPACETES'};
+  }
+
+  // catálogo completo do portfólio. A vitrine mostra cinco por vez e vai
+  // trocando as peças, do mesmo jeito que o portfólio real entra e sai conforme os estudos.
+  var CATALOG = [
+    mLavanderia, mMercadinho, mVending, mRecargaEV, mCarregadorCel,
+    mTotemAtend, mFotos, mCapacete, mLavaJato
+  ];
+
+  // ---------- disposição da vitrine ----------
+  // Duas formas de exibir o portfólio, escolhidas pelo endereço da página:
+  //   #esteira  fileira que desliza de lado, sem fim
+  //   padrão    órbita 360, com as peças sempre voltadas para quem olha
+  var NARROW = (window.innerWidth || 1200) < 780;
+  var MODO = (location.hash.indexOf('esteira') >= 0) ? 'esteira' : 'orbita';
+
+  // ordem de exibição (índices do catálogo)
+  var ORDEM = [0, 5, 1, 3, 2, 4, 8, 7, 6];
+
+  function buildMachine(catIdx, idx){
+    var m = CATALOG[catIdx]();
+    return {
+      local: m.faces,
+      cableLocal: m.cable ? [m.cable.from, m.cable.mid, m.cable.to] : null,
+      w: m.w, h: m.h, d: m.d,
+      radius: Math.max(m.w, m.d) * 0.72,
+      height: m.h,
+      name: m.name, tag: m.tag,
+      index: idx, catIdx: catIdx, alpha: 1,
+      pose: { x:0, z:0, yaw:0 }
+    };
+  }
+  var machines = ORDEM.map(function(cat, i){ return buildMachine(cat, i); });
+
+  // largura da esteira: soma das peças com folga
+  var BELT_GAP = 0.75;
+  var BELT_W = (function(){
+    var t = 0;
+    machines.forEach(function(m){ t += m.w + BELT_GAP; });
+    return t;
+  })();
+  (function(){
+    var x = -BELT_W/2;
+    machines.forEach(function(m){ m.beltX = x + m.w/2; x += m.w + BELT_GAP; });
+  })();
+
+  var ORB_RX = NARROW ? 2.5 : 3.7, ORB_RZ = NARROW ? 1.2 : 1.55;
+
+  function mod(v, n){ return ((v % n) + n) % n; }
+
+  function updatePoses(t){
+    var n = machines.length;
+    if (MODO === 'orbita'){
+      machines.forEach(function(m, i){
+        var th = (i/n)*Math.PI*2 + t;
+        var x = Math.sin(th)*ORB_RX, z = Math.cos(th)*ORB_RZ;
+        m.pose.x = x; m.pose.z = z;
+        m.pose.yaw = Math.atan2(-x, CAM_Z - z);   // sempre de frente para quem olha
+        m.alpha = 1;
+      });
+    } else {
+      machines.forEach(function(m){
+        var x = mod(m.beltX + t*2.1 + BELT_W/2, BELT_W) - BELT_W/2;
+        m.pose.x = x; m.pose.z = 0; m.pose.yaw = -x*0.035;
+        var borda = BELT_W/2 - Math.abs(x);
+        m.alpha = Math.max(0, Math.min(1, borda / 1.4));
+      });
+    }
+  }
+
+  var SPREAD_X = (MODO === "orbita") ? ORB_RX + 1.0 : BELT_W/2;
+  var SPREAD_Z = (MODO === "orbita") ? ORB_RZ + 0.9 : 1.6;
+  var MAX_TURN = 0.0;   // o movimento vem da própria disposição
+
+
+  // ---------- câmera / projeção ----------
+  var CAM_Y = NARROW ? 2.35 : 1.70, CAM_Z = 9.2, LOOK_Y = 1.05;
+  var pitch = Math.atan2(CAM_Y - LOOK_Y, CAM_Z);
+  var sinP = Math.sin(pitch), cosP = Math.cos(pitch);
+  var W = 1, H = 1, scale = 1, cx2 = 0, cy2 = 0;
+
+  function project(p){
+    var x = p[0], y = p[1] - CAM_Y, z = p[2] - CAM_Z;
+    var yr =  y*cosP - z*sinP;
+    var zr =  y*sinP + z*cosP;
+    var d = -zr;
+    if (d < 0.15) d = 0.15;
+    var f = scale / d;
+    return [cx2 + x*f, cy2 - yr*f, d];
+  }
+
+  // caixas locais de cada máquina, para o auto-enquadramento
+  var CAIXAS = machines.map(function(m){
+    var lo=[1e9,1e9,1e9], hi=[-1e9,-1e9,-1e9];
+    m.local.forEach(function(f){ f.p.forEach(function(v){
+      for (var i=0;i<3;i++){ if (v[i]<lo[i]) lo[i]=v[i]; if (v[i]>hi[i]) hi[i]=v[i]; }
+    });});
+    return {lo:lo, hi:hi};
+  });
+
+  // pontos de referência amostrados ao longo de um ciclo completo do movimento
+  var FIT_PTS = (function(){
+    var pts = [], passos = 16;
+    for (var k=0;k<passos;k++){
+      var t = (MODO === 'orbita') ? (k/passos)*Math.PI*2 : (k/passos)*(BELT_W/2.1);
+      updatePoses(t);
+      machines.forEach(function(m, mi){
+        var bx = CAIXAS[mi], sy = Math.sin(m.pose.yaw), cy = Math.cos(m.pose.yaw);
+        for (var a2=0;a2<8;a2++){
+          var v = [ (a2&1)?bx.hi[0]:bx.lo[0], (a2&2)?bx.hi[1]:bx.lo[1], (a2&4)?bx.hi[2]:bx.lo[2] ];
+          var r = rotYpt(v, sy, cy);
+          pts.push([r[0]+m.pose.x, r[1], r[2]+m.pose.z]);
+        }
+      });
+    }
+    for (var i=0;i<32;i++){
+      var ang = i/32*Math.PI*2;
+      pts.push([Math.cos(ang)*SPREAD_X, 0, Math.sin(ang)*SPREAD_Z]);
+    }
+    updatePoses(0);
+    return pts;
+  })();
+
+  // mede a extensão projetada (com scale=1) ao longo de uma volta completa
+  var FIT = (function(){
+    var ux = 0, uTop = 0, uBot = 0;
+    for (var k=0;k<=12;k++){
+      var a = -MAX_TURN + (k/12)*(MAX_TURN*2), s = Math.sin(a), c = Math.cos(a);
+      for (var i=0;i<FIT_PTS.length;i++){
+        var p = rotYpt(FIT_PTS[i], s, c);
+        var y = p[1] - CAM_Y, z = p[2] - CAM_Z;
+        var yr = y*cosP - z*sinP, zr = y*sinP + z*cosP;
+        var d = -zr; if (d < 0.4) d = 0.4;
+        var hx = Math.abs(p[0])/d, hy = yr/d;
+        if (hx > ux) ux = hx;
+        if (hy > uTop) uTop = hy;
+        if (hy < uBot) uBot = hy;
+      }
+    }
+    return {ux:ux, top:uTop, bot:-uBot};
+  })();
+
+  function resize(){
+    var stage = canvas.parentNode;
+    W = stage.clientWidth || 400;
+    H = stage.clientHeight || 440;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = W*dpr; canvas.height = H*dpr;
+    canvas.style.width = W+'px'; canvas.style.height = H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    cx2 = W/2; cy2 = H*0.48;
+    var sH = (W/2 * 0.96) / FIT.ux;
+    var sUp = (cy2 * 0.94) / FIT.top;
+    var sDn = ((H - cy2) * 0.80) / FIT.bot;
+    scale = Math.min(sH, sUp, sDn);
+  }
+
+  // ---------- iluminação ----------
+  var LIGHT = (function(){ var v=[-0.42, 0.78, 0.46]; var l=Math.hypot(v[0],v[1],v[2]); return [v[0]/l,v[1]/l,v[2]/l]; })();
+  var RIM   = (function(){ var v=[0.72, 0.18, -0.62]; var l=Math.hypot(v[0],v[1],v[2]); return [v[0]/l,v[1]/l,v[2]/l]; })();
+
+  var VIS = (location.hash.indexOf('cor') >= 0) ? 'atual' : 'mono';
+  var MIN_FACE_PX = (VIS === 'atual') ? 0 : 34;
+  function acoStyle(c){
+    // aproxima a peça da família de aço/navy da marca, mantendo só a luminosidade
+    var lum = 0.299*c[0] + 0.587*c[1] + 0.114*c[2];
+    return [lum*0.80, lum*0.92, lum*1.10];
+  }
+  var FOG = [10, 27, 46]; // cor de fundo da página, usada para afastar o que está atrás
+  function polyArea(sp){
+    var a = 0;
+    for (var i=0;i<sp.length;i++){ var j=(i+1)%sp.length; a += sp[i][0]*sp[j][1] - sp[j][0]*sp[i][1]; }
+    return Math.abs(a)/2;
+  }
+  function shadeColor(c, n, boost, depth, accent){
+    if (VIS === 'mono' && !accent) c = acoStyle(c);
+    var d = Math.abs(n[0]*LIGHT[0] + n[1]*LIGHT[1] + n[2]*LIGHT[2]);
+    var r = Math.abs(n[0]*RIM[0] + n[1]*RIM[1] + n[2]*RIM[2]);
+    var nz = Math.abs(n[2]);
+    var k = 0.34 + 0.80*d*d + 0.46*nz*nz;
+    if (boost) k *= boost;
+    var rr = c[0]*k + COPPER[0]*0.20*r*r*r + CYAN[0]*0.05*d;
+    var gg = c[1]*k + COPPER[1]*0.20*r*r*r + CYAN[1]*0.05*d;
+    var bb = c[2]*k + COPPER[2]*0.20*r*r*r + CYAN[2]*0.05*d;
+    if (depth !== undefined){
+      // névoa: o que está mais longe funde com o fundo, criando profundidade
+      var t = Math.min(0.26, Math.max(0, (depth - (CAM_Z - SPREAD_Z - 0.5)) / (SPREAD_Z*3.4)));
+      rr += (FOG[0]-rr)*t; gg += (FOG[1]-gg)*t; bb += (FOG[2]-bb)*t;
+    }
+    return 'rgb(' + Math.min(255,Math.max(0,rr|0)) + ',' + Math.min(255,Math.max(0,gg|0)) + ',' + Math.min(255,Math.max(0,bb|0)) + ')';
+  }
+
+  // ---------- estado ----------
+  var groupA = 0, vel = 0, dragging = false, lastX = 0, moved = 0;
+  var hovered = -1, featured = 0, spotClock = 0, userTouched = false, swayT = 0;
+  var swapClock = 0, swapCursor = 0, movT = 0;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function clampTurn(a){ return Math.max(-MAX_TURN, Math.min(MAX_TURN, a)); }
+
+  // desenha conteúdo sobre um painel projetado, usando as bordas do quad como base 2D
+  // (espaço interno de 100x100 para que fontes e traços tenham tamanho utilizável)
+  function drawPanel(q, kind){
+    // origem no canto superior esquerdo, eixo Y para baixo (como o canvas),
+    // para que texto e ícones não saiam espelhados
+    var tl=q[3], tr=q[2], bl=q[0];
+    var right=[(tr[0]-tl[0])/100, (tr[1]-tl[1])/100];
+    var down =[(bl[0]-tl[0])/100, (bl[1]-tl[1])/100];
+    if (!isFinite(right[0]) || !isFinite(down[0])) return;
+    // painel virado para trás, não desenha conteúdo
+    if (right[0]*down[1] - right[1]*down[0] <= 0) return;
+    // espaço de desenho com pixels quadrados: altura sempre 100, largura proporcional
+    var lenR = Math.hypot(right[0], right[1]), lenD = Math.hypot(down[0], down[1]);
+    if (lenD < 0.0001 || lenR < 0.0001) return;
+    var PW = 100 * (lenR / lenD), PH = 100;
+    ctx.save();
+    ctx.transform(right[0]*100/PW, right[1]*100/PW, down[0], down[1], tl[0], tl[1]);
+    ctx.lineCap = 'round';
+
+    // mesma geometria do logotipo oficial: anel aberto de 20 a 292 graus
+    // (0 grau no topo, sentido horário) e a gota no meio da abertura, a 336 graus
+    function ring(cx, cy, r, lw){
+      var g = Math.PI/180;
+      ctx.lineWidth = lw;
+      ctx.strokeStyle = 'rgb(94,234,212)';
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, (20-90)*g, (292-90)*g, false);
+      ctx.stroke();
+      var a = (336-90)*g;
+      ctx.fillStyle = 'rgb(232,131,74)';
+      ctx.beginPath();
+      ctx.arc(cx + Math.cos(a)*r, cy + Math.sin(a)*r, lw*0.95, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    if (kind === 'brand'){
+      var br = Math.min(30, PW*0.16);
+      ring(br*1.75, 50, br, br*0.38);
+      ctx.fillStyle = 'rgb(233,238,243)';
+      ctx.font = '700 ' + (br*1.55).toFixed(1) + 'px "Space Grotesk", Georgia, serif';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('GIRO', br*3.1, 53);
+    } else if (kind === 'ad'){
+      // painel publicitário vertical: anel + linhas de anúncio
+      var ar = Math.min(PW, PH) * 0.30;
+      ring(PW/2, PH*0.30, ar, ar*0.38);
+      ctx.fillStyle = 'rgba(94,234,212,0.16)';
+      ctx.fillRect(PW*0.14, PH*0.58, PW*0.72, PH*0.045);
+      ctx.fillRect(PW*0.14, PH*0.66, PW*0.50, PH*0.045);
+      ctx.fillStyle = 'rgba(232,131,74,0.55)';
+      ctx.fillRect(PW*0.14, PH*0.75, PW*0.30, PH*0.045);
+    } else {
+      var sr = Math.min(PW, PH) * 0.30;
+      ring(PW/2, PH/2, sr, sr*0.40);
+    }
+    ctx.restore();
+  }
+
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    var s = Math.sin(groupA), c = Math.cos(groupA);
+
+    // --- plataforma da vitrine (círculo no chão, projetado ponto a ponto) ---
+    function floorRing(rx, rz, style, width, fill){
+      ctx.beginPath();
+      for (var i=0;i<=56;i++){
+        var a = i/56*Math.PI*2;
+        var w = rotYpt([Math.cos(a)*rx, 0, Math.sin(a)*rz], s, c);
+        var p = project(w);
+        if (i===0) ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]);
+      }
+      ctx.closePath();
+      if (fill){ ctx.fillStyle = fill; ctx.fill(); }
+      if (style){ ctx.strokeStyle = style; ctx.lineWidth = width||1; ctx.stroke(); }
+    }
+    floorRing(SPREAD_X, SPREAD_Z, null, 0, 'rgba(94,234,212,0.05)');
+    floorRing(SPREAD_X, SPREAD_Z, 'rgba(94,234,212,0.30)', 1.2);
+    floorRing(SPREAD_X*0.72, SPREAD_Z*0.72, 'rgba(94,234,212,0.12)', 1);
+
+    // --- sombras de contato ---
+    var order = machines.map(function(m){
+      var b = rotYpt([m.pose.x, 0, m.pose.z], s, c);
+      return {m:m, wz:b[2], base:b};
+    }).sort(function(a,b){ return a.wz - b.wz; });
+
+    order.forEach(function(o){
+      var pb = project([o.base[0], 0, o.base[2]]);
+      var rx = o.m.radius * scale / pb[2] * 1.35;
+      var ry = rx * 0.30;
+      var g = ctx.createRadialGradient(pb[0], pb[1], 0, pb[0], pb[1], rx);
+      g.addColorStop(0, 'rgba(0,0,0,' + (0.42 * o.m.alpha).toFixed(3) + ')');
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.save();
+      ctx.translate(pb[0], pb[1]); ctx.scale(1, ry/rx); ctx.translate(-pb[0], -pb[1]);
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(pb[0], pb[1], rx, 0, Math.PI*2); ctx.fill();
+      ctx.restore();
+
+      // marca no chão a máquina em destaque
+      var isHl = (hovered >= 0) ? (hovered === o.m.index) : (!userTouched && featured === o.m.index);
+      if (isHl){
+        ctx.save();
+        ctx.translate(pb[0], pb[1]); ctx.scale(1, 0.30); ctx.translate(-pb[0], -pb[1]);
+        ctx.strokeStyle = 'rgba(94,234,212,0.55)';
+        ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.arc(pb[0], pb[1], rx*0.72, 0, Math.PI*2); ctx.stroke();
+        ctx.restore();
+      }
+    });
+
+    // --- coleta e ordena faces ---
+    var list = [];
+    machines.forEach(function(m){
+      var hl = (hovered >= 0) ? (hovered === m.index) : (!userTouched && featured === m.index);
+      var sy = Math.sin(m.pose.yaw + groupA), cy = Math.cos(m.pose.yaw + groupA);
+      var bs = rotYpt([m.pose.x, 0, m.pose.z], s, c);
+      m.local.forEach(function(f){
+        var wp = f.p.map(function(v){ var r = rotYpt(v, sy, cy); return [r[0]+bs[0], r[1], r[2]+bs[2]]; });
+        var sp = wp.map(project);
+        var zsum = 0; for (var i=0;i<sp.length;i++) zsum += sp[i][2];
+        // normal
+        var a=wp[0], b=wp[1], d=wp[2];
+        var u=[b[0]-a[0],b[1]-a[1],b[2]-a[2]], v=[d[0]-a[0],d[1]-a[1],d[2]-a[2]];
+        var n=[u[1]*v[2]-u[2]*v[1], u[2]*v[0]-u[0]*v[2], u[0]*v[1]-u[1]*v[0]];
+        var nl=Math.hypot(n[0],n[1],n[2]) || 1;
+        n=[n[0]/nl,n[1]/nl,n[2]/nl];
+        list.push({sp:sp, z:zsum/sp.length, c:f.c, n:n, screen:f.screen, alpha:f.alpha, hl:hl, m:m, ma:m.alpha, accent:f.accent});
+      });
+      // cabo do carregador: entra na MESMA lista ordenada por profundidade,
+      // segmento a segmento, para respeitar o z-buffer e nunca vazar por cima das outras peças
+      if (m.cableLocal && m.alpha >= 0.05){
+        var cab = m.cableLocal.map(function(v){ var r = rotYpt(v, sy, cy); return [r[0]+bs[0], r[1], r[2]+bs[2]]; });
+        var cpts = [];
+        for (var ct=0; ct<=1.001; ct+=0.08){
+          var ca=cab[0], cb=cab[1], cd=cab[2], cit=1-ct;
+          cpts.push([ cit*cit*ca[0]+2*cit*ct*cb[0]+ct*ct*cd[0],
+                      cit*cit*ca[1]+2*cit*ct*cb[1]+ct*ct*cd[1],
+                      cit*cit*ca[2]+2*cit*ct*cb[2]+ct*ct*cd[2] ]);
+        }
+        for (var ci=0; ci<cpts.length-1; ci++){
+          var p1=project(cpts[ci]), p2=project(cpts[ci+1]);
+          list.push({cable:true, seg:[p1,p2], z:(p1[2]+p2[2])/2, ma:m.alpha,
+                     tip: (ci===cpts.length-2) ? p2 : null});
+        }
+      }
+    });
+    list.sort(function(a,b){ return b.z - a.z; });
+
+    list.forEach(function(f){
+      if (f.cable){
+        var ca = (f.ma !== undefined ? f.ma : 1);
+        if (ca < 1) ctx.globalAlpha = ca;
+        ctx.beginPath();
+        ctx.moveTo(f.seg[0][0], f.seg[0][1]);
+        ctx.lineTo(f.seg[1][0], f.seg[1][1]);
+        ctx.strokeStyle = 'rgba(8,20,32,0.95)';
+        ctx.lineWidth = Math.max(2, scale/f.seg[0][2]*0.05);
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.stroke();
+        if (f.tip){
+          ctx.fillStyle = 'rgb(232,131,74)';
+          ctx.beginPath(); ctx.arc(f.tip[0], f.tip[1], Math.max(3, scale/f.tip[2]*0.055), 0, Math.PI*2); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        return;
+      }
+      if (MIN_FACE_PX && !f.screen && polyArea(f.sp) < MIN_FACE_PX) return;
+      ctx.beginPath();
+      ctx.moveTo(f.sp[0][0], f.sp[0][1]);
+      for (var i=1;i<f.sp.length;i++) ctx.lineTo(f.sp[i][0], f.sp[i][1]);
+      ctx.closePath();
+      var fa = (f.alpha !== undefined ? f.alpha : 1) * (f.ma !== undefined ? f.ma : 1);
+      if (fa < 1) ctx.globalAlpha = fa;
+      ctx.fillStyle = shadeColor(f.c, f.n, f.hl ? 1.30 : 1, f.z, f.accent);
+      ctx.fill();
+      // frestas entre painéis, define a silhueta e separa as peças
+      ctx.strokeStyle = 'rgba(6,16,28,0.55)';
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+      if (f.screen && f.sp.length === 4) drawPanel(f.sp, f.screen);
+    });
+
+  }
+
+  // ---------- destaque / interação ----------
+  var tip = document.getElementById('stageTip');
+  var tipName = document.getElementById('tipName');
+  var tipTag = document.getElementById('tipTag');
+  function updateLabel(){
+    var idx = hovered >= 0 ? hovered : featured;
+    var m = machines[idx];
+    if (tipName) tipName.textContent = m.name;
+    if (tipTag) tipTag.textContent = m.tag;
+  }
+
+  function machineAt(mx, my){
+    var s = Math.sin(groupA), cc = Math.cos(groupA);
+    var found = -1, bestZ = 1e9;
+    machines.forEach(function(m){
+      var b = rotYpt([m.pose.x, 0, m.pose.z], s, cc);
+      var pTop = project([b[0], m.height, b[2]]);
+      var pBot = project([b[0], 0, b[2]]);
+      var halfW = m.radius * scale / pBot[2];
+      if (mx > pBot[0]-halfW && mx < pBot[0]+halfW && my > pTop[1]-6 && my < pBot[1]+6){
+        if (pBot[2] < bestZ){ bestZ = pBot[2]; found = m.index; }
+      }
+    });
+    return found;
+  }
+
+  canvas.addEventListener('pointerdown', function(e){
+    dragging = true; moved = 0; lastX = e.clientX; vel = 0;
+    canvas.classList.add('grabbing');
+    if (canvas.setPointerCapture) { try { canvas.setPointerCapture(e.pointerId); } catch(err){} }
+  });
+  canvas.addEventListener('pointermove', function(e){
+    var rect = canvas.getBoundingClientRect();
+    if (dragging){
+      var dx = e.clientX - lastX; lastX = e.clientX; moved += Math.abs(dx);
+      vel = -dx * (MODO === 'orbita' ? 0.006 : 0.010);
+      movT += vel;
+      if (moved > 8) userTouched = true;
+    } else {
+      var h = machineAt(e.clientX - rect.left, e.clientY - rect.top);
+      if (h !== hovered){ hovered = h; updateLabel(); canvas.style.cursor = h >= 0 ? 'pointer' : 'grab'; }
+    }
+  });
+  function endDrag(){ dragging = false; canvas.classList.remove('grabbing'); }
+  canvas.addEventListener('pointerup', function(e){
+    var rect = canvas.getBoundingClientRect();
+    if (moved < 6){
+      var h = machineAt(e.clientX - rect.left, e.clientY - rect.top);
+      if (h >= 0){
+        var target = document.getElementById('maquinas');
+        if (target) target.scrollIntoView({behavior:'smooth'});
+      }
+    }
+    endDrag();
+  });
+  canvas.addEventListener('pointercancel', endDrag);
+  canvas.addEventListener('pointerleave', function(){
+    if (hovered !== -1){ hovered = -1; updateLabel(); canvas.style.cursor='grab'; }
+    endDrag();
+  });
+
+  // ---------- loop ----------
+  var last = 0, visible = true;
+  if (window.IntersectionObserver){
+    new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }, {threshold:0.02})
+      .observe(canvas.parentNode);
+  }
+  function loop(t){
+    requestAnimationFrame(loop);
+    var dt = Math.min((t - last)/1000 || 0, 0.05); last = t;
+    if (!visible) return;
+
+    // o movimento agora é a própria disposição avançando
+    if (!dragging){
+      if (Math.abs(vel) > 0.0004){ movT += vel; vel *= 0.94; }
+      else if (!reduce){ movT += (MODO === 'orbita' ? 0.085 : 0.16) * dt; }
+    }
+    updatePoses(movT);
+
+    // destaque percorre o portfólio sozinho até o visitante interagir
+    if (hovered < 0 && !userTouched && !reduce){
+      spotClock += dt;
+      if (spotClock > 3.0){
+        spotClock = 0;
+        featured = (featured + 1) % machines.length;
+        updateLabel();
+      }
+    }
+
+    frame();
+  }
+
+  resize();
+  updateLabel();
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(canvas.parentNode);
+  else window.addEventListener('resize', resize);
+  canvas.classList.add('ready');
+  requestAnimationFrame(loop);
+})();
+</script>
+
+</body></html>
